@@ -1,0 +1,142 @@
+<html>
+
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script
+        src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<!-- Loading the AngularJS file from /public/angularJS folder -->
+<script src="angularjs/user_log.js"></script>
+
+
+
+<body ng-app="user_log" ng-controller="user_log">
+<div class="row">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg"
+                        alt="LinkedIn" class="logo" height="50" width="64">
+
+
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+
+                    <li><a href="#">      </a></li>
+                    <li><a></a></li>
+
+                    <li><a></a></li>
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/getProduct">View Products</a></li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/view_Profile">View Profile</a></li>
+                            <li><a href="/profile">Edit Profile</a></li>
+                            <li><a href="/logout">logout</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="row">
+        <nav>
+            <div class="col-md-2 col-md-4">
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+
+                            <li>
+                                <a href="/product"><i class="fa fa-dashboard fa-fw"></i>Post New Advertisement</a>
+                            </li>
+
+
+                            <li>
+                                <a href="/test1"><i class="fa fa-edit fa-fw"></i>User Activity</a>
+                            </li>
+                            <li>
+                                <a href="/sell_history"><i class="fa fa-edit fa-fw"></i>Advertisement History</a>
+                            </li>
+
+                            <li>
+                                <a href="/buy_history"><i class="fa fa-edit fa-fw"></i>Order History</a>
+                            </li>
+                            <li>
+                                <a href="/showcart"><i class="fa fa-edit fa-fw"></i>View Cart</a>
+                            </li>
+
+
+                            <li>
+                                <a><h1>     </h1></a>
+                            </li>
+                            <li>
+                                <a><h1>     </h1></a>
+                            </li>
+                            <li>
+                                <a><h1>     </h1></a>
+                            </li>
+                            <li>
+                                <a><h1>     </h1></a>
+                            </li>
+                        </ul>
+                    </div></div></div></nav>
+        <!-- /.navbar-static-side -->
+
+<div class="col-md-offset-2">
+        <h1 class="col-md-offset-4">User Log</h1>
+        <table class="table" >
+            <tr class="row">
+
+                <td>Time Stamp</td>
+                <td>user_id</td>
+                <td>Object_id</td>
+                <td>Description</td>
+
+            </tr>
+            <tr class="row" ng-repeat="test in test">
+                <!--<td>{{test.id}}</td>-->
+                <td>{{test.timestamp}}</td>
+                <td>{{test.user_id}}</td>
+                <td>{{test.object_id}}</td>
+                <td>{{test.description}}</td>
+                <!--<td>{{test.item_quantity}}</td>-->
+
+            </tr>
+
+            <!--</table></div>-->
+        </table>
+    </div>
+        <!-- /.sidebar-collapse -->
+    </div></div>
+
+</div>
+</div>
+</body>
+</html>

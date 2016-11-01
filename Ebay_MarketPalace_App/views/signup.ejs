@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<!-- Loading the AngularJS file from /public/angularJS folder -->
+<script src="angularjs/signup.js"></script>
+<h1 align="center">Sign Up</h1>
+<body ng-app="signup" ng-controller="signup">
+<div class="col-md-5">
+<label>firstname</label><input class="form-control" type="text" name="fname" ng-model='fname' required pattern="[A-Za-z]{1,32}" autofocus>
+
+<label>lastname</label><input type="text" class="form-control"  name="lname" ng-model='lname' required pattern="[A-Za-z]{1,32}" required>
+
+<label>email</label><input type="email" class="form-control"  name="email" ng-model='email'required>
+
+<label>Password</label><input type="password" class="form-control" name="password" ng-model='password' required><br>
+<input type="submit" class="btn btn-success" ng-click="submit();"
+						value="Sign Up" /><br>
+</div>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+ 
+  <title>Credit Card Validation</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+      <script
+              src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  </head>
+  <script src="angularjs/creditcard.js"></script>
+  <body ng-app="creditcard" ng-controller="creditcard">
+  <div class="row">
+      <nav class="navbar navbar-default">
+          <div class="container-fluid">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+
+                  <img
+                          src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg"
+                          alt="LinkedIn" class="logo" height="50" width="64">
+
+
+              </div>
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+
+                      <li><a href="#">      </a></li>
+                      <li><a>hello!!! </a></li>
+                      <li><a href="/homepage"> Back</a></li>
+                      <li><a></a></li>
+
+                  </ul>
+
+                  <ul class="nav navbar-nav navbar-right">
+                      <li><a href="/getProduct">View Products</a></li>
+
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                              <li><a href="/view_Profile">View Profile</a></li>
+                              <li><a href="/profile">Edit Profile</a></li>
+                              <li><a href="/logout">logout</a></li>
+                              <li role="separator" class="divider"></li>
+                              <li><a href="#">Separated link</a></li>
+                          </ul>
+                      </li>
+                  </ul>
+              </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+      </nav>
+      <div class="row">
+          <nav>
+              <div class="col-md-2 col-md-4">
+                  <div class="navbar-default sidebar" role="navigation">
+                      <div class="sidebar-nav navbar-collapse">
+                          <ul class="nav" id="side-menu">
+
+                              <li>
+                                  <a href="/product"><i class="fa fa-dashboard fa-fw"></i>Post New Advertisement</a>
+                              </li>
+
+
+                              <li>
+                                  <a href="/test1"><i class="fa fa-edit fa-fw"></i>User Activity</a>
+                              </li>
+                              <li>
+                                  <a href="/bbid_log"><i class="fa fa-edit fa-fw"></i>Bid Logs</a>
+                              </li>
+                              <li>
+                                  <a href="/sell_history"><i class="fa fa-edit fa-fw"></i>Advertisement History</a>
+                              </li>
+
+                              <li>
+                                  <a href="/buy_history"><i class="fa fa-edit fa-fw"></i>Order History</a>
+                              </li>
+                              <li>
+                                  <a href="/showcart"><i class="fa fa-edit fa-fw"></i>View Cart</a>
+                              </li>
+
+                              <a><h1>     </h1></a>
+                              </li>
+                              <li>
+                                  <a><h1>     </h1></a>
+                              </li>
+                              <li>
+                                  <a><h1>     </h1></a>
+                              </li>
+                          </ul>
+                      </div></div></div></nav>
+          <!-- /.navbar-static-side -->
+          <div class="col-md-offset-2">
+
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-4 col-md-offset-3">
+                          <div class="login-panel panel panel-default">
+                              <div class="panel-heading">
+                                  <h3 class="panel-title">Credit Card</h3>
+                              </div>
+                              <div class="panel-body">
+  <form> <!--action="/validation"method= "POST"-->
+<div class="col-xs-12">
+        <label>Name on the Card</label>
+    <input type="text" class="form-control"  name="name" ng-model="name"  placeholder="Enter Name" required>
+      <label>Credit Card no.:</label>
+      <input type="text"  name="creditcard" class="form-control" ng-model="creditcard" pattern="\d*" placeholder="16 digit number" required>
+</div>
+ <div class="col-xs-8">
+      <label for="usr">Expiration Date: </label><br>
+      
+      <label>Month(mm)</label>
+      <input type="text" placeholder="mm" class="form-control" pattern="\d*" id="month" name="month" ng-model="month" required>
+      <label>Year(yy)</label>
+      <input type="text" placeholder="yy" class="form-control" pattern="\d*" id="year" name="year" ng-model="year" required>
+     
+      
+     
+      
+<!--  <select class="form-control select" id="payementExpiryMonth" value="{{payementExpiryMonth}}"  class="form-control" ng-model="payementExpiryMonth" required>
+              <option value="">Select Month</option>
+				 <option value="01">Jan (01)</option>
+				<option value="02">Feb (02)</option>
+				<option value="03">Mar (03)</option>
+				<option value="04">Apr (04)</option>
+				 <option value="05">May (05)</option>
+                <option value="06">June (06)</option>
+				<option value="07">July (07)</option>
+				<option value="08">Aug (08)</option>
+				<option value="09">Sep (09)</option>
+				<option value="10">Oct (10)</option>
+				<option value="11">Nov (11)</option>
+				<option value="12">Dec (12)</option>
+ </select><br>
+                                        
+ </div>
+  <div class="col-xs-8">
+               <select class="form-control select" id = "payementExpiryYear" value="{{payementExpiryYear}}" ng-model="payementExpiryYear" required>
+            <option value="">Select Year</option>
+                                   
+			 <option value="16">2016</option>
+			   <option value="17">2017</option>
+			  <option value="18">2018</option>
+			 <option value="19">2019</option>
+				<option value="20">2020</option>
+			 <option value="21">2021</option>
+			 <option value="22">2022</option>
+			 <option value="23">2023</option>
+             <option value="24">2024</option>
+             </select><br> --><br>
+             <label for="usr">CVV :</label>
+ </div>
+  <div class="col-xs-5"> 
+      
+      <input type="text"  ng-model="cvv" class="form-control" name="cvv" pattern="\d*" placeholder="CVV" required><br>
+      <br><input type="submit" class="btn btn-success" ng-click="submit();">
+    </div>
+      </form>
+  </body>
+</html>

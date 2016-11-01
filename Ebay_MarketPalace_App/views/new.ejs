@@ -1,0 +1,81 @@
+<html ng-app>
+<head>
+<meta charset='UTF-8'>
+<title>Angukar</title>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="Contact">
+<select name="" id="" ng-model="selected_person" ng-options="person.name for person in people">
+<option value="">choose a name</option>
+</select>
+<br>
+<select name="" id="" ng-model="selected_destination" ng-options="destination.name for destination in dest">
+<option value="">choose a location</option>
+</select><br>
+selected person={{selected_person.name}}
+selected destination={{selected_destination.name}}
+<div class="col-md-12" style="margin: 10px;">
+<input type="submit" class="btn btn-success" ng-click="submit();"
+						value="Add" />
+				</div>
+</div>
+
+<script>
+function Contact($scope){
+$scope.people=[{name:"Devanjal"},
+{name:"Devanjal"},
+{name:"Devanjal"},
+{name:"Devanjal"}];
+$scope.dest=[{name:"San Jose"},
+{name:"Indore"},
+{name:"Ratlam"},
+{name:"SF"}];
+}
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
