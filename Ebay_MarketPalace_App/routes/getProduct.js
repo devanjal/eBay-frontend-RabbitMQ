@@ -4,25 +4,44 @@ var session = require('express-session');
 var object_id="vp_id";
 var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/ebay";
+var mq_client = require('../rpc/client');
 
 exports.getUser = function(req,res){
     // These two variables come from the form on
-    // the views/login.hbs page
-    // var first_name = req.param("first_name");
-    // var last_name = req.param("last_name");
-    // var email = req.param("email");
-    // var password = req.param("password");
-    // console.log(password +" is the object");
     var json_responses;
+    var collection='advertisement'
+    var msg_payload = { "type":"Profile","userid":collection};
 
-    mongo.connect(mongoURL, function() {
-        console.log('Connected to mongo at: ' + mongoURL);
-        var coll = mongo.collection('advertisement');
-        var des = coll.find().toArray(function(err, items) {
-            console.log(items);
-            res.send(items);
-        })
-    })
+    console.log("GET profile Request" + collection);
+
+    mq_client.make_request('profile_queue',msg_payload, function(err,results){
+
+      //  console.log(results);
+        if(err){
+            throw err;
+        }
+        else
+        {
+            if(results.code == 200) {
+                console.log("Profile fetched   " + results.items);
+
+                res.send(results.items);
+            }
+            else {
+
+                console.log("Profile has some issue");
+                res.send({"status":"Fail"});
+            }
+        }
+    });
+    // mongo.connect(mongoURL, function() {
+    //     console.log('Connected to mongo at: ' + mongoURL);
+    //     var coll = mongo.collection('advertisement');
+    //     var des = coll.find().toArray(function(err, items) {
+    //         console.log(items);
+    //         res.send(items);
+    //     })
+    // })
 };
 
 exports.getUser1=function(req,res){

@@ -80,10 +80,11 @@ console.log(""+req.session.first_name);
 		var name= "checks";
 		var last_name=req.session.last_name;
 		var first_name=req.session.first_name;
+		var email=req.session.email;
 		//var last_login=req.session.devanjal;
 		var last_login=req.session.devanjal
 ;		console.log("Last Login"+last_login);
-		res.render('product', {titl: name, fname:first_name, lname:last_name, last:last_login });
+		res.render('product', {titl: name, fname:first_name, lname:last_name, last:last_login, email:email });
 	}
 	else{
 		console.log("Not in session");

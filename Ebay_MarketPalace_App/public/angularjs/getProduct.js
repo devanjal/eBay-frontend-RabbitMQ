@@ -17,7 +17,7 @@ getUser.controller('getUser', function($scope, $http,$window,$location) {
                 //alert(data);
 
                 var count = Object.keys(data).length;
-                alert(count);
+                //alert(count);
                 alert($scope.test);
 
             });

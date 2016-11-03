@@ -3,7 +3,6 @@
  */
 var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/ebay";
-var ejs = require("ejs");
 var mq_client = require('../rpc/client');
 
 exports.checkSignup = function(req,res){
@@ -15,7 +14,10 @@ exports.checkSignup = function(req,res){
 	var password = req.param("password");
 	console.log(password +" is the object");
 	var json_responses;
-	var msg_payload = {"type":"signup","first_name":first_name ,"last_name": last_name, "email":email,"password":password};
+
+	//console.log("GET profile Request" + collection);
+
+	var msg_payload = {"type":"signup","first_name":first_name ,"last_name":last_name , "email":email,"password":password};
 
 	//console.log("POST Request for signup :"+name +" "+newUserEmail+" "+newUserPassword);
 
@@ -27,7 +29,7 @@ exports.checkSignup = function(req,res){
 		}else{
 			if(results.code == 200){
 				console.log("User account created.");
-				res.send({"status":"Success"});
+				res.send(results.code);
 			}
 			else{
 				console.log("User account not created");
@@ -35,26 +37,25 @@ exports.checkSignup = function(req,res){
 			}
 		}
 	});
-
 	// mongo.connect(mongoURL, function(){
 	// 	console.log('Connected to mongo at: ' + mongoURL);
 	// 	var coll = mongo.collection('user');
-    //
-	// 	coll.insert({first_name: first_name, last_name:last_name,email: email, password:password}, function(err, user){
-	// 		if (user) {
-	// 			// This way subsequent requests will know the user is logged in.
-	// 			// req.session.username = user.username;
-	// 			//console.log(req.session.username +" is the session");
-	// 			json_responses = {"statusCode" : 200};
-	// 			res.send(json_responses);
-    //
-	// 		} else {
-	// 			console.log("returned false");
-	// 			json_responses = {"statusCode" : 401};
-	// 			res.send(json_responses);
-	// 		}
-	// 	});
-	});
+
+		// coll.insert({first_name: first_name, last_name:last_name,email: email, password:password}, function(err, user){
+		// 	if (user) {
+		// 		// This way subsequent requests will know the user is logged in.
+		// 		// req.session.username = user.username;
+		// 		//console.log(req.session.username +" is the session");
+		// 		json_responses = {"statusCode" : 200};
+		// 		res.send(json_responses);
+        //
+		// 	} else {
+		// 		console.log("returned false");
+		// 		json_responses = {"statusCode" : 401};
+		// 		res.send(json_responses);
+		// 	}
+	// 	// });
+	// });
 };
 
 

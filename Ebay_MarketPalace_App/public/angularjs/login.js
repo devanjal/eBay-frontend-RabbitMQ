@@ -17,12 +17,12 @@ login.controller('login', function($scope, $http) {
 			}
 		}).success(function(data) {
 			//checking the response data for statusCode
-			if (data.statusCode == 401) {
+			if (data.code == 401) {
 				$scope.invalid_login = false;
 				$scope.unexpected_error = true;
 			}
 			else
-			//Making a get call to the '/redirectToHomepage' API
+
 				window.location.assign("/product");
 		}).error(function(error) {
 			$scope.unexpected_error = false;
