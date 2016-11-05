@@ -2,40 +2,85 @@ var mysql= require('./mysql')
 var ejs=require('ejs');
 var session = require('express-session');
 var object_id="vp_id";
+var mq_client = require('../rpc/client');
+var mongo = require("./mongo");
+var mongoURL = "mongodb://localhost:27017/ebay";
+var ObjectID = require('mongodb').ObjectID;
+
 exports.post_order_history=function(req,res){
-    //if(!req.session){
-//var checkLogin='SELECT fname FROM ebay WHERE email="'+req.body.email+'" AND password="'+req.body.password+'"';
-    // var insert_items='insert into item values('+req.body.id+',"'+req.body.name+'","'+req.body.desc+'","'+req.body.seller+'","'+req.body.shipAdd+'","'+req.body.cost+'","'+req.body.quantity+'")';
-    var insert_items='SELECT * FROM advertisement where seller_id="'+req.session.user_id+'"';
-    //console.log(req.session.user);
 
-    mysql.fetchData(insert_items,function(err,result){
+    var msg_payload = {"type":"sell","user_id":req.session.user_id};
+    mq_client.make_request('profile_queue',msg_payload,function(err,results){
+        console.log(results);
+
         if(err){
-            console.log(err);
+            throw err;
+        }else{
+            if(results.code == 200){
+                console.log("User account created."+results);
 
+                res.send(results.user);
+            }
+            else{
+                console.log("User account not created");
+                res.send({"status":"Fail"});
+            }
         }
-        else{
-
-            res.send(result);
-            console.log(result);
-
-
-        }});
+    });
+    // mysql.fetchData(insert_items,function(err,result){
+    //     if(err){
+    //         console.log(err);
+    //
+    //     }
+    //     else{
+    //
+    //         res.send(result);
+    //         console.log(result);
+    //
+    //
+    //     }});
 }
-exports.buy_history=function(req,res){
-   var insert_items='SELECT * FROM order_history where user_id="'+req.session.user_id+'"';
-    //console.log(req.session.user);
+exports.buy_history=function(req,res) {
 
-    mysql.fetchData(insert_items,function(err,result){
+    var msg_payload = {"type":"buy","userid":req.session.user_id};
+    mq_client.make_request('login_queue',msg_payload,function(err,results){
+        console.log(results);
+
         if(err){
-            console.log(err);
+            throw err;
+        }else{
+            if(results.code == 200){
+                console.log("User account created."+results);
 
+                res.send(results.user);
+            }
+            else{
+                console.log("User account not created");
+                res.send({"status":"Fail"});
+            }
         }
-        else{
+    });
 
-            res.send(result);
-            console.log(result);
+    // mongo.connect(mongoURL, function () {
+    //     console.log('Connected to mongo at: ' + req.session.user_id);
+    //     var coll = mongo.collection('userhistory');
+    //     coll.find({userid:new ObjectID(req.session.user_id)}).toArray(function (err, item) {
+    //         if(!err){
+    //         console.log(item)
+    //         }
+    //     })
+    // });
 
-
-        }});
+    // mysql.fetchData(insert_items,function(err,result){
+    //     if(err){
+    //         console.log(err);
+    //
+    //     }
+    //     else{
+    //
+    //         res.send(result);
+    //         console.log(result);
+    //
+    //
+    //     }});
 }

@@ -1,7 +1,7 @@
 var mysql = require('./mysql');
 var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/ebay";
-
+var ObjectID = require('mongodb').ObjectID;
 
 
 exports.addcart = function (req, res) {
@@ -18,6 +18,7 @@ exports.addcart = function (req, res) {
     var seller_name = req.body.seller_name;
     var ship_location = req.body.ship_location;
     var item_price = req.body.item_price;
+    var item_post_date=req.body.item_post_date;
     mongo.connect(mongoURL, function(){
         console.log('Connected to mongo at: ' + mongoURL);
         var coll = mongo.collection('shopping_cart');
@@ -32,7 +33,8 @@ exports.addcart = function (req, res) {
                 item_quantity: item_quantity,
                 ship_location: ship_location,
                 seller_name: seller_name,
-                item_id: item_id
+                item_id: item_id,
+                item_post_date: item_post_date,
             }, function (err, user) {
                 if (user) {
 
@@ -129,6 +131,143 @@ exports.addcart1 = function (req, res) {
     });
 };
 exports.bidcart = function (req, res) {
+
+    var user_id = req.session.user_id;
+    var item_id = req.body.item_id;
+    var item_quantity = parseInt(req.body.quantity)+1;
+    var item_name = req.body.item_name;
+    var item_description = req.body.item_description;
+    var seller_name = req.body.seller_name;
+    var item_post_date=req.body.item_post_date;
+    var ship_location = req.body.ship_location;
+    var base_price = req.body.item_price;
+    var bid_price= req.body.bid_price;
+    var total=parseInt(bid_price)+parseInt(base_price);
+    mongo.connect(mongoURL, function(){
+        console.log('Connected to mongo at: ' + mongoURL);
+        var coll = mongo.collection('bid');
+//
+        var netPrice = parseFloat(req.body.itemprice) + parseFloat(req.body.bid);// total
+        var quantity = parseInt(req.body.quantitySelected)+1;// selceted quantity
+
+
+        //connection.collection('bid').update({itemno:new ObjectID(req.body.itemid)}, {$set:{bids:{$each:[{userid:new ObjectID(req.session._id),bidplaced:netPrice,quantityselected:quantity}],$sort:{bidplaced:-1}}}},{upsert:true}, function(err, result) {
+        coll.update({itemno:new ObjectID(req.body.item_id),
+            'bids.userid':new ObjectID(req.session.user_id)},
+            {$set:{'bids.$':{userid:new ObjectID(req.session.user_id),
+                bidplaced:total,quantityselected:item_quantity}}},
+            function(err, result) {
+            if (err)
+            {
+                throw err;
+            }
+            //var test = result;
+            console.log('result:'+JSON.stringify(result) + result.result.nModified);
+            if(result.result.nModified == 0)
+            {
+                coll.update({itemno:new ObjectID(req.body.item_id)},
+                    {$push:{bids:{$each:[{userid:new ObjectID(req.session.user_id),bidplaced:total,
+                        quantityselected:item_quantity}],$sort:{bidplaced:-1}}}},
+                    {upsert:true},function(err, result) {
+                    console.log('bid updated for first time:'+result)
+                    if (err)
+                    {
+                        throw err;
+                    }
+                });
+            }
+            //do something.
+
+        });
+        var x=req.session.first_name;
+        var y=req.session.last_name;
+        var z=req.session.devanjal;
+        res.render('getProduct', {title: 'All Product', fname:x, lname: y, last_login:z});
+//
+
+
+    });
+    // mongo.connect(mongoURL, function(){
+    //     console.log('Connected to mongo at: ' + mongoURL);
+    //     var coll1 = mongo.collection('advertisement');
+    //     coll1.update({_id:mongo.ObjectId(item_id)},
+    //         {
+    //             $set:{item_price: total}
+    //         }
+    //
+    //     );
+    // });
+
+};
+exports.bidcartm = function (req, res) {
+
+
+
+    var insert_query = "insert into bid_db(item_id, user_id, bid_price, item_quantity) values ("+ item_id +", "+user_id+", " +
+        total + ", " + item_quantity + ") on duplicate key update item_quantity = "+item_quantity+", bid_price = "+ total +";";
+    var update_shope ='update advertisement set item_price ="'+total+'" where item_id="'+item_id+'"';
+    // var bid_log='insert into bid_log values(now(),"'+item_id+'","'+req.session.user_id+'","'+total+'")';
+    var user_id = req.session.user_id;
+    var item_id = req.body.item_id;
+    var item_quantity = parseInt(req.body.quantity)+1;
+    var item_name = req.body.item_name;
+    var item_description = req.body.item_description;
+    var seller_name = req.body.seller_name;
+    var item_post_date=req.body.item_post_date;
+    var ship_location = req.body.ship_location;
+    var base_price = req.body.item_price;
+    var bid_price= req.body.bid_price;
+    var total=parseInt(bid_price)+parseInt(base_price);
+    mongo.connect(mongoURL, function(){
+        console.log('Connected to mongo at: ' + mongoURL);
+        var coll = mongo.collection('bid');
+
+        // console.log(req.session.shop_id);
+        coll.insert({
+            item_id:item_id,
+            user_id: user_id,
+            item_price: total,
+            item_description: item_description,
+            item_name: item_name,
+            item_quantity: item_quantity,
+            ship_location: ship_location,
+            seller_name: seller_name,
+            item_post_date: item_post_date,
+        }, function (err, user) {
+            if (user) {
+
+                json_responses = {"statusCode": 200};
+                res.redirect("/product")
+
+            } else {
+                console.log("returned false");
+                json_responses = {"statusCode": 401};
+                res.send(json_responses);
+            }
+        });
+
+    });
+    mongo.connect(mongoURL, function(){
+        console.log('Connected to mongo at: ' + mongoURL);
+        var coll1 = mongo.collection('advertisement');
+        coll1.update({_id:mongo.ObjectId(item_id)},
+            {
+                $set:{item_price: total}
+            }
+
+        );
+    });
+    // mysql.fetchData(bid_log,function (err,result) {
+    //     if(err){
+    //
+    //     }
+    //     else{
+    //         console.log("success ")
+    //     }
+    //
+    // })
+};
+exports.bidcart1 = function (req, res) {
 
     var user_id = req.session.user_id;
     var item_id = req.body.item_id;

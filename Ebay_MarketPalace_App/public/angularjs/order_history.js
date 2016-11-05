@@ -12,6 +12,7 @@ var buy_history = angular.module('buy_history', []);
 buy_history.controller('buy_history', function($scope, $http,$window,$location) {
     $scope.test = [];
     $http.get("/buylist").success(function(data) {
+        $scope.test=JSON.stringify(data);
         $scope.test=data;
         console.log($scope.test);
         alert($scope.test)

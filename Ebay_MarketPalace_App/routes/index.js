@@ -20,15 +20,15 @@ exports.index = function(req, res){
   }) ;
 };
 exports.getUser=function (req,res) {
-  if(req.session.user_id) {
+ // if(req.session.first_name) {
     var x=req.session.first_name;
     var y=req.session.last_name;
     var z=req.session.devanjal;
     res.render('getProduct', {title: 'All Product', fname:x, lname: y, last_login:z});
-  }
-  else {
-    res.redirect("/login")
-  }
+  //}
+ // else {
+   // res.redirect("/login")
+ // }
 };
 exports.login = function(req, res){
   if(!req.session.user) {
@@ -111,18 +111,19 @@ exports.getbidlog = function(req, res){
   }
 };
 exports.get_order_history = function(req, res){
-  if(req.session.user){
+  // if(req.session.devanjal){
   //console.log("In Credit Card Validation");
     var x=req.session.first_name;
     var y=req.session.last_name;
     var z=req.session.devanjal;
-  res.render('order_history', { title: 'order_history', fname:x, lname: y, last_login:z });}
-  else{
-    res.redirect("/login")
-  }
+  res.render('order_history', { title: 'order_history', fname:x, lname: y, last_login:z });
+//}
+  // else{
+  //   res.redirect("/login")
+  // }
 };
 exports.get_buy_history = function(req, res){
-  if(req.session.user) {
+  if(req.session.user_id) {
     //console.log("In Credit Card Validation");
     var x=req.session.first_name;
     var y=req.session.last_name;

@@ -27,7 +27,7 @@ exports.checkLogin = function(req,res){
 			throw err;
 		}else{
 			if(results.code == 200){
-				console.log("User account created."+results.email);
+				console.log("User account created."+results._id);
 							req.session.email = results.email;
 							req.session.first_name = results.first_name;
 							req.session.last_name = results.last_name;

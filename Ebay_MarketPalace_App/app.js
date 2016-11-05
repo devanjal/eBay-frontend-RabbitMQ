@@ -23,6 +23,7 @@ var express = require('express')
 	,order_history=require('./routes/order_history');
 var CronJob = require('cron').CronJob;
 var mysql=require('./routes/mysql');
+var schedular=require('./routes/schedular')
 
 
 
@@ -115,79 +116,79 @@ app.post('/bidcart',shopping_cart.bidcart);
 app.post('/removeCart',shopping_cart.remove_item);
 app.get('/order',order_history.post_order_history);
 // Cron job definition WINSTON , SIMPLE LOGGER
-var job = new CronJob('10 * * * * *', function () {
-	console.log("cron job running");
-
-	var query_one = 'Select * from advertisement where item_post_date <= NOW() - INTERVAL 2 MINUTE and bid_value="true";';
-	mysql.cron_mysql(function (err, rows) {
-		if(err){
-			console.log(err);
-		}else {
-			if(rows.length == 0){
-				console.log("null value returned");
-				// connection.end();
-			}else {
-				console.log(rows[0]);
-				for(i in rows){
-					var quantity = rows[i].item_quantity;
-					console.log("Quantity "+quantity);
-					var query_two = "select * from bid_db where item_id = " + rows[i].item_id+" order by bid_price DESC;";
-					mysql.cron_mysql((function (element_quantity, element_row) {
-						console.log("Current State");
-						return function (err, cron_bid) {
-							if(err) console.log(err);
-							else {
-								//console.log("biddata"+JSON.stringify(cron_bid));
-								if(cron_bid.length === 0){
-									console.log("biddata length 0");
-									var query_delete = "delete from advertisement where item_id =" + element_row.item_id;
-									mysql.cron_mysql(function (err, results) {
-
-									}, query_delete);
-								}
-
-								for(var j in cron_bid){
-									if(cron_bid[j].item_quantity <= element_quantity){
-										console.log("Bid section");
-
-										var item_id = element_row.item_id;
-										var item_name = element_row.item_name;
-										var item_description = element_row.item_description;
-										var seller_name = element_row.seller_name;
-										var quantity = parseInt(cron_bid[j].item_quantity);
-										var item_price = parseFloat(cron_bid[j].bid_price);
-										var email = null;
-										var user_id = cron_bid[j].user_id;
-
-										var query_three = "insert into order_history set item_id="+ item_id +", item_name='"+ item_name + "', item_description='" +
-											item_description + "', seller_name='"+ seller_name + "', quantity="+ quantity + ", item_price="+ item_price +", email="+
-											"null, user_id="+ user_id + ";";
-										mysql.cron_mysql(function (err, data) {
-											if(err) throw err;
-											var query_four = "delete from bid_db where item_id=" + element_row.item_id + ";";
-											mysql.cron_mysql(function (err, data) {
-												if(err) throw err;
-												var query_five = "Delete from advertisement where item_id=" + element_row.item_id+ ";";
-												mysql.cron_mysql(function (err, data) {
-													if(err) throw err;
-													console.log("Bid Completed");
-												}, query_five);
-											}, query_four);
-										}, query_three);
-										element_quantity = element_quantity - cron_bid[j].item_quantity;
-									}
-								}
-
-							}
-						}
-
-					})(quantity, rows[i]), query_two);
-				}
-			}
-		}
-	}, query_one);
-
-}, null, true, 'America/Los_Angeles');
+// var job = new CronJob('10 * * * * *', function () {
+// 	console.log("cron job running");
+//
+// 	var query_one = 'Select * from advertisement where item_post_date <= NOW() - INTERVAL 2 MINUTE and bid_value="true";';
+// 	mysql.cron_mysql(function (err, rows) {
+// 		if(err){
+// 			console.log(err);
+// 		}else {
+// 			if(rows.length == 0){
+// 				console.log("null value returned");
+// 				// connection.end();
+// 			}else {
+// 				console.log(rows[0]);
+// 				for(i in rows){
+// 					var quantity = rows[i].item_quantity;
+// 					console.log("Quantity "+quantity);
+// 					var query_two = "select * from bid_db where item_id = " + rows[i].item_id+" order by bid_price DESC;";
+// 					mysql.cron_mysql((function (element_quantity, element_row) {
+// 						console.log("Current State");
+// 						return function (err, cron_bid) {
+// 							if(err) console.log(err);
+// 							else {
+// 								//console.log("biddata"+JSON.stringify(cron_bid));
+// 								if(cron_bid.length === 0){
+// 									console.log("biddata length 0");
+// 									var query_delete = "delete from advertisement where item_id =" + element_row.item_id;
+// 									mysql.cron_mysql(function (err, results) {
+//
+// 									}, query_delete);
+// 								}
+//
+// 								for(var j in cron_bid){
+// 									if(cron_bid[j].item_quantity <= element_quantity){
+// 										console.log("Bid section");
+//
+// 										var item_id = element_row.item_id;
+// 										var item_name = element_row.item_name;
+// 										var item_description = element_row.item_description;
+// 										var seller_name = element_row.seller_name;
+// 										var quantity = parseInt(cron_bid[j].item_quantity);
+// 										var item_price = parseFloat(cron_bid[j].bid_price);
+// 										var email = null;
+// 										var user_id = cron_bid[j].user_id;
+//
+// 										var query_three = "insert into order_history set item_id="+ item_id +", item_name='"+ item_name + "', item_description='" +
+// 											item_description + "', seller_name='"+ seller_name + "', quantity="+ quantity + ", item_price="+ item_price +", email="+
+// 											"null, user_id="+ user_id + ";";
+// 										mysql.cron_mysql(function (err, data) {
+// 											if(err) throw err;
+// 											var query_four = "delete from bid_db where item_id=" + element_row.item_id + ";";
+// 											mysql.cron_mysql(function (err, data) {
+// 												if(err) throw err;
+// 												var query_five = "Delete from advertisement where item_id=" + element_row.item_id+ ";";
+// 												mysql.cron_mysql(function (err, data) {
+// 													if(err) throw err;
+// 													console.log("Bid Completed");
+// 												}, query_five);
+// 											}, query_four);
+// 										}, query_three);
+// 										element_quantity = element_quantity - cron_bid[j].item_quantity;
+// 									}
+// 								}
+//
+// 							}
+// 						}
+//
+// 					})(quantity, rows[i]), query_two);
+// 				}
+// 			}
+// 		}
+// 	}, query_one);
+//
+// }, null, true, 'America/Los_Angeles');
 //
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));

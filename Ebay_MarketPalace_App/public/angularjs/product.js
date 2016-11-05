@@ -29,7 +29,7 @@ product.controller('product', function($scope, $http,$window) {
 			}
 		}).success(function(data) {
 			//checking the response data for statusCode
-			if (data.statusCode == 401) {
+			if (data.code == 401) {
 				$scope.invalid_login = false;
 				$scope.validlogin = true;
 
@@ -38,7 +38,7 @@ product.controller('product', function($scope, $http,$window) {
 			{
 
 				console.log("1");
-				$window.location='/Product';
+				$window.location='/product';
 				alert("Item Posted Successfully");
 			}
 
