@@ -30,6 +30,7 @@ var job = new CronJob('30 * * * * *', function() {
     var connection = connectionpool.getdbconnection();
     connection.collection('advertisement').find({item_post_date:{$lte:twentyMinutesLater},
         bid_value:'true'}).toArray(function (err, result) {
+        console.log({item_post_date:{$lte:twentyMinutesLater},bid_value:'true'});
         console.log('inside query');
         if (err) {
             console.log(err);

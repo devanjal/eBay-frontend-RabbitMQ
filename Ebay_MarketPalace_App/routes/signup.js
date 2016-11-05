@@ -29,7 +29,7 @@ exports.checkSignup = function(req,res){
 		}else{
 			if(results.code == 200){
 				console.log("User account created.");
-				res.send(results.code);
+				res.send({"status":"Success"});
 			}
 			else{
 				console.log("User account not created");

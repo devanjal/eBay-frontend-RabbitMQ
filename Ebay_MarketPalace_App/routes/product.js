@@ -16,52 +16,52 @@ exports.sell = function(req,res){
 		"seller_name":req.session.first_name+" "+req.session.last_name,
 		"item_post_date":new Date()};
 
-	mq_client.make_request('profile_queue',msg_payload,function(err,results){
-		console.log(results);
-
-		if(err){
-			throw err;
-		}else{
-			if(results.code == 200){
-				console.log("User account created."+results);
-
-				res.send(results);
-			}
-			else{
-				console.log("User account not created");
-				res.send({"status":"Fail"});
-			}
-		}
-	});
-
-	// mongo.connect(mongoURL, function(){
-	// 	console.log('Connected to mongo at: ' + mongoURL);
-	// 	var coll = mongo.collection('advertisement');
-	// 	coll.insert({user_id: req.session.user_id,
-	// 			item_price:req.param('cost'),
-	// 		item_description:req.param('description'),
-	// 		item_name:req.param('product_name'),
-	// 		item_quantity:req.param('quantity'),
-	// 		ship_location:req.param('ship_location'),
-	// 		bid_value:req.param('bid_value'),
-	// 		seller_name:req.session.first_name+" "+req.session.last_name,
-	// 		item_post_date:new Date(),
-	// 		//item_price:req.params('cost'),
-	// 				}, function(err, user){
-	// 		if (user) {
-	// 			// This way subsequent requests will know the user is logged in.
-	// 			// req.session.username = user.username;
-	// 			//console.log(req.session.username +" is the session");
-	// 			json_responses = {"statusCode" : 200};
-	// 			res.send(json_responses);
+	// mq_client.make_request('profile_queue',msg_payload,function(err,results){
+	// 	console.log(results);
     //
-	// 		} else {
-	// 			console.log("returned false");
-	// 			json_responses = {"statusCode" : 401};
-	// 			res.send(json_responses);
+	// 	if(err){
+	// 		throw err;
+	// 	}else{
+	// 		if(results.code == 200){
+	// 			console.log("User account created."+results);
+    //
+	// 			res.send(results);
 	// 		}
-	// 	});
+	// 		else{
+	// 			console.log("User account not created");
+	// 			res.send({"status":"Fail"});
+	// 		}
+	// 	}
 	// });
+
+	mongo.connect(mongoURL, function(){
+		console.log('Connected to mongo at: ' + mongoURL);
+		var coll = mongo.collection('advertisement');
+		coll.insert({user_id: req.session.user_id,
+				item_price:req.param('cost'),
+			item_description:req.param('description'),
+			item_name:req.param('product_name'),
+			item_quantity:req.param('quantity'),
+			ship_location:req.param('ship_location'),
+			bid_value:req.param('bid_value'),
+			seller_name:req.session.first_name+" "+req.session.last_name,
+			item_post_date:new Date(),
+			//item_price:req.params('cost'),
+					}, function(err, user){
+			if (user) {
+				// This way subsequent requests will know the user is logged in.
+				// req.session.username = user.username;
+				//console.log(req.session.username +" is the session");
+				json_responses = {"statusCode" : 200};
+				res.send(json_responses);
+
+			} else {
+				console.log("returned false");
+				json_responses = {"statusCode" : 401};
+				res.send(json_responses);
+			}
+		});
+	});
 };
 
 exports.sell1=function(req,res){
