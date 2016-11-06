@@ -2,53 +2,85 @@ var mysql = require('./mysql');
 var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/ebay";
 var ObjectID = require('mongodb').ObjectID;
+var mq_client = require('../rpc/client');
+
+exports.addcart = function(req,res){
+
+    var item_price;
+    var json_responses;
+    var msg_payload = {"type":"shop","user_id":req.session.user_id ,
+        "item_price":req.body.item_price,
+        "item_description":req.body.item_description,
+        "item_name":req.body.item_name,
+        "item_quantity":parseInt(req.body.quantity)+1,
+        "ship_location":req.body.ship_location,
+        "item_id":req.body.item_id,
+        //"bid_value":req.param('bid_value'),
+        "seller_name":req.session.first_name+" "+req.session.last_name,
+        "item_post_date":req.body.item_post_date};
 
 
-exports.addcart = function (req, res) {
-    // mongo.connect(mongoURL, function(){
-    //     console.log('Connected to mongo at: ' + mongoURL);
-    //     var coll = mongo.collection('shopping_cart');
-    // });
 
-    var user_id = req.session.user_id;
-    var item_id = req.body.item_id;
-    var item_quantity = parseInt(req.body.quantity)+1;
-    var item_name = req.body.item_name;
-    var item_description = req.body.item_description;
-    var seller_name = req.body.seller_name;
-    var ship_location = req.body.ship_location;
-    var item_price = req.body.item_price;
-    var item_post_date=req.body.item_post_date;
-    mongo.connect(mongoURL, function(){
-        console.log('Connected to mongo at: ' + mongoURL);
-        var coll = mongo.collection('shopping_cart');
-        console.log(req.session.shop_id);
+    mq_client.make_request('shop_queue',msg_payload,function(err,results){
+        console.log(results);
 
+        if(err){
+            throw err;
+        }else{
+            if(results.code == 200){
+                console.log("User account created."+results);
 
-            coll.insert({
-                user_id: user_id,
-                item_price: item_price,
-                item_description: item_description,
-                item_name: item_name,
-                item_quantity: item_quantity,
-                ship_location: ship_location,
-                seller_name: seller_name,
-                item_id: item_id,
-                item_post_date: item_post_date,
-            }, function (err, user) {
-                if (user) {
+                res.render('shopping_cart');
+            }
+            else{
+                console.log("User account not created");
+                res.send({"status":"Fail"});
+            }
+        }
+    });
 
-                    json_responses = {"statusCode": 200};
-                    res.redirect("/product")
-
-                } else {
-                    console.log("returned false");
-                    json_responses = {"statusCode": 401};
-                    res.send(json_responses);
-                }
-            });
-
-        });
+    //function (req, res) {
+//
+//
+//     var user_id = req.session.user_id;
+//     var item_id = req.body.item_id;
+//     var item_quantity = parseInt(req.body.quantity)+1;
+//     var item_name = req.body.item_name;
+//     var item_description = req.body.item_description;
+//     var seller_name = req.body.seller_name;
+//     var ship_location = req.body.ship_location;
+//     var item_price = req.body.item_price;
+//     var item_post_date=req.body.item_post_date;
+//     mongo.connect(mongoURL, function(){
+//         console.log('Connected to mongo at: ' + mongoURL);
+//         var coll = mongo.collection('shopping_cart');
+//         console.log(req.session.shop_id);
+//
+//
+//             coll.insert({
+//                 user_id: user_id,
+//                 item_price: item_price,
+//                 item_description: item_description,
+//                 item_name: item_name,
+//                 item_quantity: item_quantity,
+//                 ship_location: ship_location,
+//                 seller_name: seller_name,
+//                 item_id: item_id,
+//                 item_post_date: item_post_date,
+//             }, function (err, user) {
+//                 if (user) {
+//
+//                     json_responses = {"statusCode": 200};
+//                     res.redirect("/product")
+//
+//                 } else {
+//                     console.log("returned false");
+//                     json_responses = {"statusCode": 401};
+//                     res.send(json_responses);
+//                 }
+//             });
+//
+//         });
 };
 
 exports.addToUsersCart = function(req,res){
@@ -83,12 +115,12 @@ exports.addToUsersCart = function(req,res){
                 console.log(user);
                 //console.log(user.shopping_cart);
                 json_responses = {"statusCode" : 200};
-               res.send(json_responses);
+                res.send(json_responses);
 
             } else {
                 console.log("returned false");
                 json_responses = {"statusCode" : 401};
-               res.send(json_responses);
+                res.send(json_responses);
             }
         });
     });
@@ -96,7 +128,7 @@ exports.addToUsersCart = function(req,res){
 
 exports.addcart1 = function (req, res) {
 
-   // console.log(req.body);
+    // console.log(req.body);
 
     var user_id = req.session.user_id;
     var item_id = req.body.item_id;
@@ -121,7 +153,7 @@ exports.addcart1 = function (req, res) {
 
                     }
                 });
-               // res.render('shopping_cart' );
+                // res.render('shopping_cart' );
                 res.redirect("/showcart")
             }else{
                 json_response = {"statusCode" : 401};
@@ -153,32 +185,32 @@ exports.bidcart = function (req, res) {
 
         //connection.collection('bid').update({itemno:new ObjectID(req.body.itemid)}, {$set:{bids:{$each:[{userid:new ObjectID(req.session._id),bidplaced:netPrice,quantityselected:quantity}],$sort:{bidplaced:-1}}}},{upsert:true}, function(err, result) {
         coll.update({itemno:new ObjectID(req.body.item_id),
-            'bids.userid':new ObjectID(req.session.user_id)},
+                'bids.userid':new ObjectID(req.session.user_id)},
             {$set:{'bids.$':{userid:new ObjectID(req.session.user_id),
                 bidplaced:total,quantityselected:item_quantity}}},
             function(err, result) {
-            if (err)
-            {
-                throw err;
-            }
-            //var test = result;
-            console.log('result:'+JSON.stringify(result) + result.result.nModified);
-            if(result.result.nModified == 0)
-            {
-                coll.update({itemno:new ObjectID(req.body.item_id)},
-                    {$push:{bids:{$each:[{userid:req.session.user_id,bidplaced:total,
-                        quantityselected:item_quantity}],$sort:{bidplaced:-1}}}},
-                    {upsert:true},function(err, result) {
-                    console.log('bid updated for first time:'+result);
-                    if (err)
-                    {
-                        throw err;
-                    }
-                });
-            }
-            //do something.
+                if (err)
+                {
+                    throw err;
+                }
+                //var test = result;
+                console.log('result:'+JSON.stringify(result) + result.result.nModified);
+                if(result.result.nModified == 0)
+                {
+                    coll.update({itemno:new ObjectID(req.body.item_id)},
+                        {$push:{bids:{$each:[{userid:req.session.user_id,bidplaced:total,
+                            quantityselected:item_quantity}],$sort:{bidplaced:-1}}}},
+                        {upsert:true},function(err, result) {
+                            console.log('bid updated for first time:'+result);
+                            if (err)
+                            {
+                                throw err;
+                            }
+                        });
+                }
+                //do something.
 
-        });
+            });
         var x=req.session.first_name;
         var y=req.session.last_name;
         var z=req.session.devanjal;
@@ -277,7 +309,7 @@ exports.bidcart1 = function (req, res) {
     var total=parseInt(bid_price)+parseInt(base_price);
 
     var insert_query = "insert into bid_db(item_id, user_id, bid_price, item_quantity) values ("+ item_id +", "+user_id+", " +
-       total + ", " + item_quantity + ") on duplicate key update item_quantity = "+item_quantity+", bid_price = "+ total +";";
+        total + ", " + item_quantity + ") on duplicate key update item_quantity = "+item_quantity+", bid_price = "+ total +";";
     var update_shope ='update advertisement set item_price ="'+total+'" where item_id="'+item_id+'"';
     var bid_log='insert into bid_log values(now(),"'+item_id+'","'+req.session.user_id+'","'+total+'")';
     mysql.fetchData(insert_query, function (err, rows) {
@@ -319,75 +351,75 @@ exports.showCartm = function (req, res) {
         var coll = mongo.collection('user');
 
         coll.findOne({email: req.session.email}, function(err, user){
-        var des = user.shopping_cart.toArray(function(err, items) {
-            console.log(items);
-            if(items.length > 0){
+            var des = user.shopping_cart.toArray(function(err, items) {
                 console.log(items);
-                var obj = new Object();
-                var total = 0;
+                if(items.length > 0){
+                    console.log(items);
+                    var obj = new Object();
+                    var total = 0;
 
 
-                for(var i = 0; i<items.length; i++){
-                    total = total + (items[i].item_price * items[i].item_quantity);
+                    for(var i = 0; i<items.length; i++){
+                        total = total + (items[i].item_price * items[i].item_quantity);
+                    }
+                    obj.items = items;
+
+                    obj.sum = total;
+                    var sum=obj.sum;
+                    console.log(total)
+                    //   res.send(obj);
+                }else {
+                    console.log("nullaaaaaaaaa");
+                    var obj=new Object();
+                    var total=0;
+                    obj.sum=total;
+                    // response.send()
                 }
-                obj.items = items;
-
-                obj.sum = total;
-                var sum=obj.sum;
-                console.log(total)
-                //   res.send(obj);
-            }else {
-                console.log("nullaaaaaaaaa");
-                var obj=new Object();
-                var total=0;
-                obj.sum=total;
-                // response.send()
-            }
-            var json_response={items:items, sum:total}
-            res.send(json_response);
+                var json_response={items:items, sum:total}
+                res.send(json_response);
 
 
-        });
-    })
-})};
+            });
+        })
+    })};
 
 exports.showCart = function (req, res) {
-    mongo.connect(mongoURL, function() {
-        console.log('Connected to mongo at: ' + mongoURL);
-        var coll = mongo.collection('shopping_cart');
-        console.log({user_id:req.session.user_id});
-        var des = coll.find({user_id:req.session.user_id}).toArray(function(err, items) {
+    var msg_payload = {"type": "cart", "user_id": req.session.user_id};
+    mq_client.make_request('cart_queue', msg_payload, function (err, items) {
+        if (err) {
+            throw err;
+        } else {
             console.log(items);
-            if(items.length > 0){
+            if (items.length > 0) {
                 console.log(items);
                 var obj = new Object();
                 var total = 0;
-                for(var i = 0; i<items.length; i++){
+                for (var i = 0; i < items.length; i++) {
                     total = total + (items[i].item_price * items[i].item_quantity);
                 }
                 obj.items = items;
 
                 obj.sum = total;
-               var sum=obj.sum;
+                var sum = obj.sum;
                 console.log(total)
-             //   res.send(obj);
-            }else {
+                //   res.send(obj);
+            } else {
                 console.log("nullaaaaaaaaa");
-                var obj=new Object();
-                var total=0;
-                obj.sum=total;
-               // response.send()
+                var obj = new Object();
+                var total = 0;
+                obj.sum = total;
+                // response.send()
             }
-           var json_response={items:items, sum:total}
+            var json_response = {items: items, sum: total}
             res.send(json_response);
 
 
-});
-    })
-};
+        }
+    });
+}
 exports.showCart1 = function (req, res) {
     var select_query =  "select * from shopping_cart INNER JOIN advertisement ON shopping_cart.item_id = advertisement.item_id INNER JOIN user" +
-    " ON shopping_cart.user_id = user.user_id WHERE advertisement.item_quantity >= shopping_cart.item_quantit";
+        " ON shopping_cart.user_id = user.user_id WHERE advertisement.item_quantity >= shopping_cart.item_quantit";
 
 
     mysql.fetchData(select_query,function (err, rows) {
@@ -433,26 +465,46 @@ exports.showCart1 = function (req, res) {
 
 exports.remove_item = function (req, res) {
 
+    var msg_payload = {"type":"removecart","item_id":req.body.item_id};
 
-    mongo.connect(mongoURL, function(){
-        console.log('Connected to mongo at: ' + mongoURL);
-        var coll = mongo.collection('shopping_cart');
 
-        coll.remove({_id:mongo.ObjectId(req.body.item_id)}, function(err, result){
 
-            if (result) {
+    mq_client.make_request('cart_queue',msg_payload,function(err,results) {
+        console.log(results);
+        if (err) {
+            throw err;
+        } else {
+            if (results.code == 200) {
+                console.log("User account created." + results);
 
-                json_responses = {"statusCode" : 200};
-                res.send(json_responses);
-                console.log("AFadsfnlfdsknkndskndksc")
-
-            } else {
-                console.log("returned false");
-                json_responses = {"statusCode" : 401};
-                res.send(json_responses);
+                res.send({"status": "Success"})
             }
-        });
+            else {
+                console.log("User account not created");
+                res.send({"status": "Fail"});
+            }
+        }
     });
+
+    // mongo.connect(mongoURL, function(){
+    //     console.log('Connected to mongo at: ' + mongoURL);
+    //     var coll = mongo.collection('shopping_cart');
+    //
+    //     coll.remove({_id:mongo.ObjectId(req.body.item_id)}, function(err, result){
+    //
+    //         if (result) {
+    //
+    //             json_responses = {"statusCode" : 200};
+    //             res.send(json_responses);
+    //             console.log("AFadsfnlfdsknkndskndksc")
+    //
+    //         } else {
+    //             console.log("returned false");
+    //             json_responses = {"statusCode" : 401};
+    //             res.send(json_responses);
+    //         }
+    //     });
+    // });
 
     // var delete_query = "delete from shopping_cart where item_id="+item_id+";";
     //
@@ -501,45 +553,45 @@ exports.remove_item1 = function (req, res) {
     var item_id = req.body.item_id;
     var delete_query = "delete from shopping_cart where item_id="+item_id+";";
 
-            mysql.fetchData(delete_query, function (err, result) {
+    mysql.fetchData(delete_query, function (err, result) {
+        if(err){
+            console.log("error in delete Query");
+            throw err;
+        }
+        mysql.fetchData("select * from advertisement INNER JOIN shopping_cart ON advertisement.item_id = shopping_cart.item_id INNER JOIN " +
+            "user ON shopping_cart.user_id = user.user_id where advertisement.item_quantity >= shopping_cart.item_quantit;",
+            function (err, rows) {
                 if(err){
-                    console.log("error in delete Query");
+                    console.log("error in shopping_cart remove query");
                     throw err;
-                }
-                mysql.fetchData("select * from advertisement INNER JOIN shopping_cart ON advertisement.item_id = shopping_cart.item_id INNER JOIN " +
-                    "user ON shopping_cart.user_id = user.user_id where advertisement.item_quantity >= shopping_cart.item_quantit;",
-                    function (err, rows) {
+                } else {
+                    console.log(rows);
+                    //Log page
+                    var object_id="ac_id";
+                    var description="Add To Cart"
+                    var log_sql='insert into user_log(timestamp, user_id, object_id,description) values(now(),"'+req.session.user_id+'","'+object_id+'","'+description+'")';
+
+                    mysql.fetchData(log_sql,function(err,result){
                         if(err){
-                            console.log("error in shopping_cart remove query");
-                            throw err;
-                        } else {
-                            console.log(rows);
-                            //Log page
-                            var object_id="ac_id";
-                            var description="Add To Cart"
-                            var log_sql='insert into user_log(timestamp, user_id, object_id,description) values(now(),"'+req.session.user_id+'","'+object_id+'","'+description+'")';
+                            console.log(err);
+                        }else{
 
-                            mysql.fetchData(log_sql,function(err,result){
-                                if(err){
-                                    console.log(err);
-                                }else{
-
-                                }
-                            });
-                            var obj = new Object();
-                            obj.cartData = rows;
-
-                            var total = 0;
-                            for(var i=0; i<rows.length; i++){
-                                total = total + rows[i].itemPrice * rows[i].quantity;
-                            }
-                            obj.cartTotal = total;
-                            res.send(obj);
                         }
                     });
-            });
+                    var obj = new Object();
+                    obj.cartData = rows;
 
-        };
+                    var total = 0;
+                    for(var i=0; i<rows.length; i++){
+                        total = total + rows[i].itemPrice * rows[i].quantity;
+                    }
+                    obj.cartTotal = total;
+                    res.send(obj);
+                }
+            });
+    });
+
+};
 exports.checkout = function(req,res)
 {
     res.render('form', { title: 'Credit Card validation'});

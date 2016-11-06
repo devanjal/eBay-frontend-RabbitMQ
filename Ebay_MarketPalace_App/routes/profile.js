@@ -3,6 +3,9 @@ var mysql= require('./mysql');
 var passwordHash = require("password-hash");
 var session = require('express-session');
 var mq_client = require('../rpc/client');
+//var log = require('./logger');
+var log = require('simple-node-logger').createSimpleLogger('project.log');
+log.info('subscription to ', 'channel', ' accepted at ', new Date().toJSON());
 exports.setProfile=function(req,res){
    // var sess= req.session;
     var msg_payload = {"type":"editprofile","user_id":req.session.user_id ,
@@ -28,6 +31,8 @@ exports.setProfile=function(req,res){
     		}
     	}
     });
+   // log.info("GET ","/signin ", " user ", req.session.user_id, " logged in at ", new Date().toLocaleString());;
+    log.info('subscription to ', 'channel', ' accepted at ', new Date().toJSON());
     var setProfile= 'UPDATE user SET birthday="'+req.body.dob+'",ebay_handle="'+req.body.ebay_handle+'", contact="'+req.body.phone+'" WHERE email="'+req.session.user+'" AND first_name="'+req.session.first_name+'"';
     // console.log(setProfile)
     // mysql.fetchData(setProfile,function(err,result){

@@ -1,6 +1,8 @@
 var mysql=require('./mysql');
 var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/ebay";
+var ObjectID = require('mongodb').ObjectID;
+var mq_client = require('../rpc/client');
 exports.getValid=function(req,res){
 	var object_id=req.body.object_id;
 	console.log(object_id);
@@ -37,61 +39,79 @@ exports.getValid=function(req,res){
 		flag++;
 	}
 	if(flag==0) {
-		mongo.connect(mongoURL, function () {
-			console.log('Connected to mongo at: ' + mongoURL);
-			var ad = mongo.collection('advertisement');
-			var coll = mongo.collection('shopping_cart');
-			var db = mongo.collection('order_history');
-			coll.find({"user_id":req.session.user_id}).toArray(function(err, items) {
-			//	console.log(items);
-					if(items.length > 0){
-					console.log(req.session.user_id);
-						for(var i = 0; i<items.length; i++){
-							console.log("afsdgmvmdf;sdf,xcb;/sd,xc"+items[i].item_quantity)
-						//	console.log("afsdg"+items)
-							var item_quantity =items[i].item_quantity;
-							var ad_id=items[i].item_id;
-							ad.find({_id:mongo.ObjectId(ad_id)}).toArray(function(err,result){
+		var msg_payload = {"type":"card","user_id":req.session.user_id};
 
-									if(result){
-										console.log(result);
-										var x=result[0].item_quantity;
-										var total= x-item_quantity;
-										ad.update({_id:mongo.ObjectId(ad_id)},
-											{
-												$set:{item_quantity:total}
-											}
 
-										)
-										console.log("fhsajklndfnasdlkgznvasldnzxvlasdlxvzn    Total = "+total);
-										ad.remove({item_quantity:0}, function (err,result) {
-											if(!err){
-												console.log(result)
-											}
-											else{}
 
-										})
-									}
-								}
-							)
-						}
+		mq_client.make_request('valid_queue',msg_payload,function(err,results) {
+			console.log(results);
+			if (err) {
+				throw err;
+			} else {
+				if (results.code == 200) {
+					console.log("User account created." + results);
 
-						coll.find({user_id: req.session.user_id}).forEach(function (doc) {
-							db.insert(doc);
-						});
-						coll.remove({user_id: req.session.user_id}, function (err, result) {
-							if (err) {
-							}
-							else {
-							}
-						});
-
-					}
+					res.send({"status": "Success"})
 				}
-			)
-		});
+
+			}
+
+		// mongo.connect(mongoURL, function () {
+		// 	console.log('Connected to mongo at: ' + mongoURL);
+		// 	var ad = mongo.collection('advertisement');
+		// 	var coll = mongo.collection('shopping_cart');
+		// 	var db = mongo.collection('order_history');
+		// 	coll.find({"user_id":req.session.user_id}).toArray(function(err, items) {
+		// 	//	console.log(items);
+		// 			if(items.length > 0){
+		// 			console.log(req.session.user_id);
+		// 				for(var i = 0; i<items.length; i++){
+		// 					console.log("afsdgmvmdf;sdf,xcb;/sd,xc"+items[i].item_quantity)
+		// 				//	console.log("afsdg"+items)
+		// 					var item_quantity =items[i].item_quantity;
+		// 					var ad_id=items[i].item_id;
+		// 					ad.find({_id:mongo.ObjectId(ad_id)}).toArray(function(err,result){
+        //
+		// 							if(result){
+		// 								console.log(result);
+		// 								var x=result[0].item_quantity;
+		// 								var total= x-item_quantity;
+		// 								ad.update({_id:mongo.ObjectId(ad_id)},
+		// 									{
+		// 										$set:{item_quantity:total}
+		// 									}
+        //
+		// 								)
+		// 								console.log("fhsajklndfnasdlkgznvasldnzxvlasdlxvzn    Total = "+total);
+		// 								ad.remove({item_quantity:0}, function (err,result) {
+		// 									if(!err){
+		// 										console.log(result)
+		// 									}
+		// 									else{}
+        //
+		// 								})
+		// 							}
+		// 						}
+		// 					)
+		// 				}
+        //
+		// 				coll.find({user_id: req.session.user_id}).forEach(function (doc) {
+		// 					db.insert(doc);
+		// 				});
+		// 				coll.remove({user_id: req.session.user_id}, function (err, result) {
+		// 					if (err) {
+		// 					}
+		// 					else {
+		// 					}
+		// 				});
+        //
+		// 			}
+		// 		}
+		// 	)
+		// });
 		var json_repsonse={"statuscode":200};
 		res.send(json_repsonse)
+		});
 	}
 	if(flag!=0){
 		var json_repsonse={"statuscode":401, "scard":scard, "scvv":scvv,"sdate":sdate}
