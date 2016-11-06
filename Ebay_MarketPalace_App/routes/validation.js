@@ -3,6 +3,7 @@ var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/ebay";
 var ObjectID = require('mongodb').ObjectID;
 var mq_client = require('../rpc/client');
+var log = require('simple-node-logger').createSimpleLogger('user.log');
 exports.getValid=function(req,res){
 	var object_id=req.body.object_id;
 	console.log(object_id);
@@ -110,11 +111,15 @@ exports.getValid=function(req,res){
 		// 	)
 		// });
 		var json_repsonse={"statuscode":200};
-		res.send(json_repsonse)
+			log.info('User ID : ', req.session.user_id, '  Purpose : Successful Purchase ', '  Date & Time:  ',new Date().toLocaleString());
+
+			res.send(json_repsonse)
 		});
 	}
 	if(flag!=0){
-		var json_repsonse={"statuscode":401, "scard":scard, "scvv":scvv,"sdate":sdate}
+		var json_repsonse={"statuscode":401, "scard":scard, "scvv":scvv,"sdate":sdate};
+		log.info('User ID : ', req.session.user_id, '   Issue : Invalid Card Info  ', '  Date & Time:  ',new Date().toLocaleString());
+
 		res.send(json_repsonse);
 	}};
 

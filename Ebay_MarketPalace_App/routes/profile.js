@@ -4,10 +4,11 @@ var passwordHash = require("password-hash");
 var session = require('express-session');
 var mq_client = require('../rpc/client');
 //var log = require('./logger');
-var log = require('simple-node-logger').createSimpleLogger('project.log');
-log.info('subscription to ', 'channel', ' accepted at ', new Date().toJSON());
+var log = require('simple-node-logger').createSimpleLogger('user.log');
+
 exports.setProfile=function(req,res){
    // var sess= req.session;
+	log.info('User ID : ', req.session.user_id, '   purpose : edit Profile  ', '  Date & Time:  ',new Date().toLocaleString());
     var msg_payload = {"type":"editprofile","user_id":req.session.user_id ,
                         "birthday":req.param('dob'),
                         "ebay_handle":req.param('ebay_handle'),

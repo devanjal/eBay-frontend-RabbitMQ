@@ -28,6 +28,7 @@ var mongoURL = "mongodb://localhost:27017/ebay";
 var mongoStore = require("connect-mongo")(session);
 var schedular=require('./routes/schedular');
 var mongo = require("./routes/mongo");
+var log = require('simple-node-logger').createSimpleLogger('user.log');
 var mongoURL = "mongodb://localhost:27017/ebay";
 var mq_client = require('./rpc/client');
 var passport = require('passport');
@@ -129,6 +130,8 @@ app.post('/checkSignup',function (req, res, next) {
 
             return res.send({"status":"Fail"});
         }else {
+            log.info('User ID : ', user._id, '   purpose :Login  ', '  Date & Time:  ',new Date().toLocaleString());
+
             console.log(JSON.stringify(user));
             return res.send({"status":"Success"});
         }
@@ -154,9 +157,7 @@ app.post('/checkLogin', function(req, res, next) {
             req.session.last_name = user.last_name;
             req.session.user_id = user._id;
             req.session.devanjal = user.last_login;
-           // res.send(user);
-            console.log("session initilized");
-            //log.info("GET ","/signin ", " user ", req.session.userid, " logged in at ", new Date().toLocaleString());
+            log.info('User ID : ', req.session.user_id, '   purpose :Login  ', '  Date & Time:  ',new Date().toLocaleString());
             mongo.connect(mongoURL, function () {
                 var coll = mongo.collection('user');
                 coll.update({_id:mongo.ObjectId(user._id)},

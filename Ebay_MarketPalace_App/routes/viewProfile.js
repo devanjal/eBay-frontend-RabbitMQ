@@ -2,9 +2,9 @@ var mysql= require('./mysql')
 var ejs=require('ejs');
 var session = require('express-session');
 var mq_client = require('../rpc/client');
-
+var log = require('simple-node-logger').createSimpleLogger('user.log');
 exports.viewProfile=function(req,res){
-
+    log.info('User ID : ', req.session.user_id, '   purpose : Viewed Profile  ', '  Date & Time:  ',new Date().toLocaleString());
     var msg_payload = {"type":"profile","user_id":req.session.user_id};
     mq_client.make_request('viewprofile_queue',msg_payload,function(err,results){
         console.log(results);

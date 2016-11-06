@@ -5,9 +5,12 @@ var object_id="vp_id";
 var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/ebay";
 var mq_client = require('../rpc/client');
+var log = require('simple-node-logger').createSimpleLogger('user.log');
 
 exports.getUser = function(req,res){
     // These two variables come from the form on
+    log.info('User ID : ', req.session.user_id, '   purpose : Viewing Products  ', '  Date & Time:  ',new Date().toLocaleString());
+
     var json_responses;
     var collection='advertisement'
     var msg_payload = { "type":"Profile","userid":collection};

@@ -5,6 +5,7 @@ var description="Posting of Products";
 var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/ebay";
 var mq_client = require('../rpc/client');
+var log = require('simple-node-logger').createSimpleLogger('user.log');
 exports.sell = function(req,res){
 
 	var item_price;
@@ -15,6 +16,7 @@ exports.sell = function(req,res){
 		"ship_location":req.param('ship_location'),"bid_value":req.param('bid_value'),
 		"seller_name":req.session.first_name+" "+req.session.last_name,
 		"item_post_date":new Date()};
+	log.info('User ID : ', req.session.user_id, '   purpose : Posting Product for Sale  ', '  Date & Time:  ',new Date().toLocaleString());
 
 	// mq_client.make_request('profile_queue',msg_payload,function(err,results){
 	// 	console.log(results);

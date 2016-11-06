@@ -3,8 +3,10 @@ var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/ebay";
 var ObjectID = require('mongodb').ObjectID;
 var mq_client = require('../rpc/client');
-
+var log = require('simple-node-logger').createSimpleLogger('user.log');
+var log1 = require('simple-node-logger').createSimpleLogger('bid.log');
 exports.addcart = function(req,res){
+    log.info('User ID : ', req.session.user_id, '   purpose : Added Item to Cart  ', '  Date & Time:  ',new Date().toLocaleString());
 
     var item_price;
     var json_responses;
@@ -163,6 +165,7 @@ exports.addcart1 = function (req, res) {
     });
 };
 exports.bidcart = function (req, res) {
+    //log1.info('User ID : ', req.session.user_id, '   purpose : Bidding For item : ',req.body.item_id,'   Quantity   ',item_quantity, '  Bid Price ',total, '  Date & Time:  ',new Date().toLocaleString());
 
     var user_id = req.session.user_id;
     var item_id = req.body.item_id;
@@ -175,6 +178,8 @@ exports.bidcart = function (req, res) {
     var base_price = req.body.item_price;
     var bid_price= req.body.bid_price;
     var total=parseInt(bid_price)+parseInt(base_price);
+    log1.info('User ID : ', req.session.user_id, '   purpose : Bidding For item : ',req.body.item_id,'   Quantity  :  ',item_quantity, '  Bid Price :  ',total, '  Date & Time:  ',new Date().toLocaleString());
+
     mongo.connect(mongoURL, function(){
         console.log('Connected to mongo at: ' + mongoURL);
         var coll = mongo.collection('bid');
@@ -384,6 +389,8 @@ exports.showCartm = function (req, res) {
     })};
 
 exports.showCart = function (req, res) {
+    log.info('User ID : ', req.session.user_id, '   purpose : View Cart  ', '  Date & Time:  ',new Date().toLocaleString());
+
     var msg_payload = {"type": "cart", "user_id": req.session.user_id};
     mq_client.make_request('cart_queue', msg_payload, function (err, items) {
         if (err) {
@@ -464,6 +471,7 @@ exports.showCart1 = function (req, res) {
 };
 
 exports.remove_item = function (req, res) {
+    log.info('User ID : ', req.session.user_id, '   purpose : removed Item  :',req.body.item_id , '  Date & Time:  ',new Date().toLocaleString());
 
     var msg_payload = {"type":"removecart","item_id":req.body.item_id};
 
@@ -594,5 +602,7 @@ exports.remove_item1 = function (req, res) {
 };
 exports.checkout = function(req,res)
 {
+    log.info('User ID : ', req.session.user_id, '   purpose : Checkout  ', '  Date & Time:  ',new Date().toLocaleString());
+
     res.render('form', { title: 'Credit Card validation'});
 }
