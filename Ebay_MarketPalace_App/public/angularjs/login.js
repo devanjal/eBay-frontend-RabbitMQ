@@ -17,16 +17,20 @@ login.controller('login', function($scope, $http) {
 			}
 		}).success(function(data) {
 			//checking the response data for statusCode
-			if (data.code == 401) {
+			//alert(data.status);
+			if (data.status == "Fail") {
 				$scope.invalid_login = false;
 				$scope.unexpected_error = true;
+				//$scope.existingUser='Account Already Exist';
+				//alert('wrong email/password')
 			}
-			else
-
-				window.location.assign("/product");
+			else{
+				alert("success")
+				window.location.assign("/product");}
 		}).error(function(error) {
 			$scope.unexpected_error = false;
 			$scope.invalid_login = true;
+
 		});
 	};
 })

@@ -29,10 +29,12 @@ module.exports = function(passport) {
                         if (err) {
                             throw err;
                         } else {
-                            if (results) {
+                            if (results==false) {
                                 console.log("User account created." + results);
 
-                                return done(null, results);
+                                return done(null, false);}
+                                else{
+                                return done(null, results)
                             }
 
                         }
@@ -54,21 +56,25 @@ module.exports = function(passport) {
                 last_name: req.param("last_name")
             };
 
-            var msg_payload = {"type": "signup", "username": username, "password": password, "data": data};
+            var msg_payload = {"type": "signup", "email": email, "password": password, "data": data};
 
 
             mq_client.make_request('login_queue', msg_payload, function (err, results) {
-                console.log(results);
+               // console.log(results);
                 if (err) {
-                    throw err;
+                    return done(null, err);
                 } else {
-                    if (results) {
+                    if (results==false) {
                         console.log("User account created." + results);
+                        //var json_response={results:results, code:results.code}
+                        return done(null, false);}
+                        else {
 
                         return done(null, results);
+                        }
                     }
 
-                }
+
             })
         }))
 }

@@ -140,18 +140,21 @@ app.post('/checkSignup',function (req, res, next) {
 app.post('/checkLogin', function(req, res, next) {
     passport.authenticate('signin', function(err, user, info) {
         if(err) {
+            console.log("[1]")
             return next(err);
         }
 
         if(!user) {
-            return res.send("other");
+            console.log("[2]")
+            res.send({"status":"Fail"})
         }
 
         req.logIn(user, {session:false}, function(err) {
             if(err) {
                 return next(err);
+                console.log("[3]")
             }
-
+            console.log("[4]")
             req.session.email = user.email;
             req.session.first_name = user.first_name;
             req.session.last_name = user.last_name;
