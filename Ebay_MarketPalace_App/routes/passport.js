@@ -5,6 +5,7 @@ var localStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcryptjs');
 var mongo = require('./mongo');
 var mongoURL = "mongodb://localhost:27017/ebay";
+var mq_client = require('../rpc/client');
 
 module.exports = function(passport) {
     passport.use('signin', new localStrategy(
@@ -15,27 +16,30 @@ module.exports = function(passport) {
         },
         function(req, username, password, done) {
             console.log("inside passport")
-            mongo.connect(mongoURL, function() {
+            mongo.connect(mongoURL, function () {
                 var loginCollection = mongo.collection('user');
 
-                process.nextTick(function(){
+                process.nextTick(function () {
 
-                    loginCollection.findOne({email : username}, function(err, rows) {
+                    var msg_payload = {"type": "login", "username": username,"password":password};
 
-                        if(err){ console.log("error in login"); return done(err);}
-                        else if(rows.length == 0) {console.log("rows = 0"); return done(null, false);}
-                        else if(!bcrypt.compareSync(password, rows.password)) {
-                            console.log("pass didn't mTCH");
-                            return done(null, false);
+
+                    mq_client.make_request('login_queue', msg_payload, function (err, results) {
+                        console.log(results);
+                        if (err) {
+                            throw err;
+                        } else {
+                            if (results) {
+                                console.log("User account created." + results);
+
+                                return done(null, results);
+                            }
+
                         }
-                        //mongo.close();
-                        console.log(rows.email);
-                        return done(null, rows);
                     });
                 });
-            });
+            })
         }));
-
     passport.use('signup', new localStrategy(
         {
             usernameField: 'email',
@@ -43,34 +47,57 @@ module.exports = function(passport) {
             passReqToCallback: true
         },
         function (req, email, password, done) {
-            mongo.connect(mongoURL, function () {
-                var loginCollection = mongo.collection('user');
-                console.log("inside 1");
-                loginCollection.findOne({email: email}, function (err, rows) {
-                    if (err) return done(err);
-                    if (rows){
-                        console.log("user Exist")
-                        return done(null, false);}
-                    else {
 
-                        var pass = bcrypt.hashSync(req.param("password"), bcrypt.genSaltSync(8), null)
-                        console.log(pass);
-                        var data =
-                        {
-                            first_name: req.param("first_name"),
-                            last_name: req.param("last_name"),
-                            email: req.param("email"),
-                            password: pass
-                        };
+            var data =
+            {
+                first_name: req.param("first_name"),
+                last_name: req.param("last_name")
+            };
 
-                        loginCollection.insertOne(data, function (err, rows) {
-                            if (err) console.error("Error in inserting new user" + err);
-                          //  mongo.close();
-                            return done(null, data);
-                        });
+            var msg_payload = {"type": "signup", "username": username, "password": password, "data": data};
+
+
+            mq_client.make_request('login_queue', msg_payload, function (err, results) {
+                console.log(results);
+                if (err) {
+                    throw err;
+                } else {
+                    if (results) {
+                        console.log("User account created." + results);
+
+                        return done(null, results);
                     }
-                });
-            });
-        }
-    ));
+
+                }
+            })
+        }))
 }
+            // mongo.connect(mongoURL, function () {
+            //     var loginCollection = mongo.collection('user');
+            //     console.log("inside 1");
+            //     loginCollection.findOne({email: email}, function (err, rows) {
+            //         if (err) return done(err);
+            //         if (rows){
+            //             console.log("user Exist")
+            //             return done(null, false);}
+            //         else {
+            //
+            //             var pass = bcrypt.hashSync(req.param("password"), bcrypt.genSaltSync(8), null)
+            //             console.log(pass);
+            //             var data =
+            //             {
+            //                 first_name: req.param("first_name"),
+            //                 last_name: req.param("last_name"),
+            //             };
+            //
+            //             loginCollection.insertOne(data, function (err, rows) {
+            //                 if (err) console.error("Error in inserting new user" + err);
+            //               //  mongo.close();
+            //                 return done(null, results);
+//                         });
+//                     }
+//                 });
+//             });
+//         }
+//     ));
+// }
