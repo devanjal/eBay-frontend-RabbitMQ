@@ -166,10 +166,10 @@ exports.bidcart = function (req, res) {
             if(result.result.nModified == 0)
             {
                 coll.update({itemno:new ObjectID(req.body.item_id)},
-                    {$push:{bids:{$each:[{userid:new ObjectID(req.session.user_id),bidplaced:total,
+                    {$push:{bids:{$each:[{userid:req.session.user_id,bidplaced:total,
                         quantityselected:item_quantity}],$sort:{bidplaced:-1}}}},
                     {upsert:true},function(err, result) {
-                    console.log('bid updated for first time:'+result)
+                    console.log('bid updated for first time:'+result);
                     if (err)
                     {
                         throw err;

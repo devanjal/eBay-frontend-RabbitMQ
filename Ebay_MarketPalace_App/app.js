@@ -9,7 +9,7 @@ var express = require('express')
 	, http = require('http')
 	, path = require('path')
 	, mysql= require('./routes/mysql')
-	, signup= require('./routes/signup')
+	//, signup= require('./routes/signup')
 	, profile=require('./routes/profile')
 	, product=require('./routes/product')
 	,getAllUser=require('./routes/getProduct')
@@ -23,7 +23,15 @@ var express = require('express')
 	,order_history=require('./routes/order_history');
 var CronJob = require('cron').CronJob;
 var mysql=require('./routes/mysql');
-var schedular=require('./routes/schedular')
+var mongo = require('./routes/mongo');
+var mongoURL = "mongodb://localhost:27017/ebay";
+var mongoStore = require("connect-mongo")(session);
+var schedular=require('./routes/schedular');
+var mongo = require("./routes/mongo");
+var mongoURL = "mongodb://localhost:27017/ebay";
+var mq_client = require('./rpc/client');
+var passport = require('passport');
+require('./routes/passport')(passport);
 
 
 
@@ -39,6 +47,7 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+app.use(passport.initialize());
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
@@ -46,7 +55,12 @@ app.use(express.methodOverride());
 app.use(session({
 	secret: 'kotia_just_chill',
 	resave: true,
-	saveUninitialized: true
+	saveUninitialized: true,
+	duration : 30*60*1000,
+	activeDuration : 5*60*1000,
+	store: new mongoStore({
+		url: mongoURL
+	})
 }));
 
 
@@ -106,8 +120,57 @@ app.post('/k',shopping_cart.addToUsersCart);
 
 //POST Requests
 app.post('/validation',validation.getValid);
-app.post('/checkSignup',signup.checkSignup);
-app.post('/checkLogin', login.checkLogin);
+app.post('/checkSignup',function (req, res, next) {
+    passport.authenticate('signup', function (err, user, info) {
+        if(err){
+            return next(err);
+        }
+        if(!user){
+
+            return res.send({"status":"Fail"});
+        }else {
+            console.log(JSON.stringify(user));
+            return res.send({"status":"Success"});
+        }
+    })(req, res, next);
+});
+app.post('/checkLogin', function(req, res, next) {
+    passport.authenticate('signin', function(err, user, info) {
+        if(err) {
+            return next(err);
+        }
+
+        if(!user) {
+            return res.send("other");
+        }
+
+        req.logIn(user, {session:false}, function(err) {
+            if(err) {
+                return next(err);
+            }
+
+            req.session.email = user.email;
+            req.session.first_name = user.first_name;
+            req.session.last_name = user.last_name;
+            req.session.user_id = user._id;
+            req.session.devanjal = user.last_login;
+           // res.send(user);
+            console.log("session initilized");
+            //log.info("GET ","/signin ", " user ", req.session.userid, " logged in at ", new Date().toLocaleString());
+            mongo.connect(mongoURL, function () {
+                var coll = mongo.collection('user');
+                coll.update({_id:mongo.ObjectId(user._id)},
+                				{
+                					$set:{last_login: new Date().toLocaleString()}
+                				}
+
+                			);
+            });
+
+            return res.send(user);
+        })
+    })(req, res, next);
+});
 app.post('/products',product.sell);
 app.post('/setProfile',profile.setProfile);
 //app.post('/logout', login.logout);

@@ -42,7 +42,7 @@ exports.post_order_history=function(req,res){
 }
 exports.buy_history=function(req,res) {
 
-    var msg_payload = {"type":"buy","userid":req.session.user_id};
+    var msg_payload = {"type":"buy","user_id":req.session.user_id};
     mq_client.make_request('login_queue',msg_payload,function(err,results){
         console.log(results);
 

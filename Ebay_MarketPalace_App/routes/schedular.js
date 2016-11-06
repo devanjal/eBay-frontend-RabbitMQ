@@ -5,7 +5,7 @@ var ObjectID = require('mongodb').ObjectID;
 
 function updateBidToUserHistory(detail,connection)
 {
-    connection.collection('userhistory').insertOne(detail,function(err, result) {
+    connection.collection('order_history').insertOne(detail,function(err, result) {
         if(err) {
             throw err;
         }
@@ -64,17 +64,17 @@ var job = new CronJob('30 * * * * *', function() {
                             console.log('[6]');
                             var post = new Object();
                             //post.itemno = row_snaphot.itemno;
-                            post.itemname = row_snaphot.item_name;
-                            post.itemdescription = row_snaphot.item_description;
-                            post.transactiontype = 'Bought';
-                            post.sellerinformation = row_snaphot.seller_name;
-                            post.quantity = parseInt(bids[bid].quantityselected);
-                            post.itemprice = parseFloat(bids[bid].bidplaced);
+                            post.item_name = row_snaphot.item_name;
+                           // post.itemdescription = row_snaphot.item_description;
+                         //   post.transactiontype = 'Bought';
+                          //  post.sellerinformation = row_snaphot.seller_name;
+                            post.item_quantity = parseInt(bids[bid].quantityselected);
+                            post.item_price = parseFloat(bids[bid].bidplaced);
                             //post.bidding = req.body.bidding;
                             //post.email = null;
-                            post.userid = bids[bid].userid;
-                            post.dateposted = new Date();
-                            console.log(post.userid);
+                            post.user_id = bids[bid].userid;
+                          //  post.dateposted = new Date();
+                            console.log(post.user_id);
                            // bidlog.info('bid won by ', post.userid, ' performed at ', new Date().toJSON(), ' for item ', post.itemno, ' amount placed ', post.itemprice, ' quantity selected ', post.quantity);
                             //update to user history'
                             updateBidToUserHistory(post,connection);

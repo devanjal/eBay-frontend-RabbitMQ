@@ -1,6 +1,4 @@
-/**
- * Created by Nikhil-PC on 10/26/2016.
- */
+
 
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
@@ -11,14 +9,14 @@ var mongoURL = "mongodb://localhost:27017/ebay";
 module.exports = function(passport) {
     passport.use('signin', new localStrategy(
         {
-            usernameField : 'userEmail',
-            passwordField : 'userPassword',
+            usernameField : 'email',
+            passwordField : 'password',
             passReqToCallback : true
         },
         function(req, username, password, done) {
-
+            console.log("inside passport")
             mongo.connect(mongoURL, function() {
-                var loginCollection = mongo.collection('ebaysignup');
+                var loginCollection = mongo.collection('user');
 
                 process.nextTick(function(){
 
@@ -40,32 +38,34 @@ module.exports = function(passport) {
 
     passport.use('signup', new localStrategy(
         {
-            usernameField : 'registeremail',
-            passwordField : 'pass',
-            passReqToCallback : true
+            usernameField: 'email',
+            passwordField: 'password',
+            passReqToCallback: true
         },
-        function (req, username, password, done) {
+        function (req, email, password, done) {
             mongo.connect(mongoURL, function () {
-                var loginCollection = mongo.collection('ebaysignup');
+                var loginCollection = mongo.collection('user');
                 console.log("inside 1");
-                loginCollection.findOne({email:username}, function (err, rows) {
-                    if(err) return done(err);
-                    if(rows) return done(null, false);
+                loginCollection.findOne({email: email}, function (err, rows) {
+                    if (err) return done(err);
+                    if (rows){
+                        console.log("user Exist")
+                        return done(null, false);}
                     else {
 
-                        var pass = bcrypt.hashSync(req.param("pass"), bcrypt.genSaltSync(8), null)
+                        var pass = bcrypt.hashSync(req.param("password"), bcrypt.genSaltSync(8), null)
                         console.log(pass);
                         var data =
                         {
-                            firstname: req.param("fname"),
-                            lastname: req.param("lname"),
-                            email: req.param("registeremail"),
+                            first_name: req.param("first_name"),
+                            last_name: req.param("last_name"),
+                            email: req.param("email"),
                             password: pass
                         };
 
                         loginCollection.insertOne(data, function (err, rows) {
-                            if(err) console.error("Error in inserting new user" + err);
-                            mongo.close();
+                            if (err) console.error("Error in inserting new user" + err);
+                          //  mongo.close();
                             return done(null, data);
                         });
                     }
@@ -73,6 +73,4 @@ module.exports = function(passport) {
             });
         }
     ));
-
-
-};
+}

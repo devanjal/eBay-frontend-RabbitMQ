@@ -26,7 +26,8 @@ signup.controller('signup', function($scope, $http,$window) {
 			else{
 			//Making a get call to the '/redirectToHomepage' API
 				alert("Signup Successful")
-				window.location.assign("/login");}
+			window.location.assign("/login");
+				}
 		}).error(function(error) {
 			$scope.unexpected_error = false;
 			$scope.invalid_login = true;

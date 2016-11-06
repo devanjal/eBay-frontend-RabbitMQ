@@ -5,31 +5,63 @@
 </head>
 
 <link rel='stylesheet' href='/stylesheets/style.css' />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script
-	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
 <!-- Loading the AngularJS file from /public/angularJS folder -->
 <script src="angularjs/signup.js"></script>
-<h1 align="center">Sign Up</h1>
+
+<h1 align="center"><img align="center"
+						src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg"
+						alt="Ebay" class="logo" height="60" width="74"></h1>
 <body ng-app="signup" ng-controller="signup">
-<div class="col-md-5">
-<label>firstname</label><input class="form-control" type="text" name="fname" ng-model='fname' required pattern="[A-Za-z]{1,32}" autofocus>
 
-<label>lastname</label><input type="text" class="form-control"  name="lname" ng-model='lname' required pattern="[A-Za-z]{1,32}" required>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="login-panel panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Sign Up</h3>
+				</div>
+				<div class="panel-body">
+					<form>
+						<label>firstname</label><input class="form-control" type="text" name="fname" ng-model='fname' required pattern="[A-Za-z]{1,32}" autofocus>
 
-<label>email</label><input type="email" class="form-control"  name="email" ng-model='email'required>
+						<label>lastname</label><input type="text" class="form-control"  name="lname" ng-model='lname' required pattern="[A-Za-z]{1,32}" required>
 
-<label>Password</label><input type="password" class="form-control" name="password" ng-model='password' required><br>
-<input type="submit" class="btn btn-success" ng-click="submit();"
-						value="Sign Up" /><br>
+						<label>email</label><input type="email" class="form-control"  name="email" ng-model='email'required>
+
+						<label>Password</label><input type="password" class="form-control" name="password" ng-model='password' required><br>
+
+						<input type="submit" class="btn btn-success" ng-click="submit();"
+							   value="Sign Up" /><br>
+					</form><br>
+					<font size="3" color="red">{{existingUser}}</font>
+					<br><label>Already a User?</label><a href="/login"> Go to Login</a>
+
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+
+
+<!--<div class="col-md-12" style="margin: 10px;">-->
+<!--<div class="alert alert-danger" ng-hide="invalid_login">-->
+<!--<strong>Soruce and Destination cannot be same</strong>-->
+<!--</div>-->
+<!--<div class="alert alert-danger" ng-hide="validlogin">-->
+<!--<strong>Select Something</strong>-->
+
+<!--</div>-->
+
+
 </body>
 </html>

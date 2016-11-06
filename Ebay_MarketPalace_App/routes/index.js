@@ -31,7 +31,7 @@ exports.getUser=function (req,res) {
  // }
 };
 exports.login = function(req, res){
-  if(!req.session.user) {
+  if(!req.session.user_id) {
     console.log("In Credit Card Validation");
     res.render('login', {title: 'Credit Card Validation'});
   }
@@ -53,9 +53,9 @@ exports.profile = function(req, res){
   res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
 
   //res.render('profile', { title: 'Edit Profile', user:req.session.user,fname:req.session.first_name });
-  if(req.session.user){
+  if(req.session.user_id){
 
-      res.render('profile', { title: 'Edit Profile', user:req.session.user,fname:req.session.first_name });
+      res.render('profile', { title: 'Edit Profile', user:req.session.user_id,fname:req.session.first_name });
 
     }
   else{
@@ -135,7 +135,7 @@ exports.get_buy_history = function(req, res){
   }
   };
 exports.viewProfile = function(req, res){
-  if(req.session.user){
+  if(req.session.user_id){
   //console.log("In Credit Card Validation");
   res.render('viewProfile', { title: 'viewProfile' });}
   else{

@@ -11,7 +11,7 @@ exports.checkSignup = function(req,res){
 	var first_name = req.param("first_name");
 	var last_name = req.param("last_name");
 	var email = req.param("email");
-	var password = req.param("password");
+	var password = req.param("panssword");
 	console.log(password +" is the object");
 	var json_responses;
 
