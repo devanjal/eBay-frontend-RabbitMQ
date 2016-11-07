@@ -1,6 +1,5 @@
 var CronJob = require('cron').CronJob;
 var mongocon = require('./mongocon');
-//var bidlog = require('./bidlogger');
 var ObjectID = require('mongodb').ObjectID;
 
 function orderHistory_Update(detail, connection)
@@ -12,8 +11,6 @@ function orderHistory_Update(detail, connection)
     });
 }
 var job = new CronJob('10 * * * * *', function() {
-
-    console.log("test");
     var date1 = new Date();
     var bidDays = -4;
     date1.setDate(date1.getDate() + bidDays);
