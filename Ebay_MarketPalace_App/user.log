@@ -220,3 +220,10 @@
 19:51:31.128 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 7:51:31 PM 
 19:52:45.165 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 7:52:45 PM 
 20:01:28.587 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose :Login    Date & Time:  11/6/2016, 8:01:28 PM 
+22:32:52.814 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : Viewing Products    Date & Time:  11/6/2016, 10:32:52 PM 
+22:33:27.304 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : Added Item to Cart    Date & Time:  11/6/2016, 10:33:27 PM 
+22:33:28.092 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : View Cart    Date & Time:  11/6/2016, 10:33:28 PM 
+22:33:36.491 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : Checkout    Date & Time:  11/6/2016, 10:33:36 PM 
+22:34:03.670 INFO  User ID : 581fb3a8d41909287f2a01f8  Purpose : Successful Purchase   Date & Time:  11/6/2016, 10:34:03 PM 
+22:34:28.500 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : Viewing Products    Date & Time:  11/6/2016, 10:34:28 PM 
+22:34:38.383 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : Viewing Products    Date & Time:  11/6/2016, 10:34:38 PM 
