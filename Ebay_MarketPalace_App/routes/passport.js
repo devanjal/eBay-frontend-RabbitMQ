@@ -15,7 +15,7 @@ module.exports = function(passport) {
             passReqToCallback : true
         },
         function(req, username, password, done) {
-            console.log("inside passport")
+           // console.log("inside passport")
             mongo.connect(mongoURL, function () {
                 var loginCollection = mongo.collection('user');
 
@@ -30,7 +30,7 @@ module.exports = function(passport) {
                             throw err;
                         } else {
                             if (results==false) {
-                                console.log("User account created." + results);
+                                console.log("Account Creation Successful" + results);
 
                                 return done(null, false);}
                                 else{

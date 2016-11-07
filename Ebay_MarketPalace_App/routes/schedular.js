@@ -12,7 +12,7 @@ function updateBidToUserHistory(detail,connection)
         //res.render("dashboard",{});
     });
 }
-var job = new CronJob('30 * * * * *', function() {
+var job = new CronJob('10 * * * * *', function() {
 
     console.log("test");
     var someDate = new Date();
@@ -20,24 +20,18 @@ var job = new CronJob('30 * * * * *', function() {
     someDate.setDate(someDate.getDate() + numberOfDaysToAdd)
     var twentyMinutesLater = new Date();
     twentyMinutesLater.setMinutes(twentyMinutesLater.getMinutes() + 2);
-    //select bids from ad which expired
-    //for each bid expired
-    //sort bids from users
-    //pick users won
-    //update  user history
-    //remove the bids
-    //remove the ad
+
     var connection = connectionpool.getdbconnection();
     connection.collection('advertisement').find({item_post_date:{$lte:twentyMinutesLater},
         bid_value:'true'}).toArray(function (err, result) {
-        console.log({item_post_date:{$lte:twentyMinutesLater},bid_value:'true'});
-        console.log('inside query');
+        //console.log({item_post_date:{$lte:twentyMinutesLater},bid_value:'true'});
+        //console.log('inside query');
         if (err) {
             console.log(err);
         } else if (result.length) {
             console.log('Found:', result);
         } else {
-            console.log('No document(s) found with defined "find" criteria!');
+            console.log('Nothing in Bid');
         }
 
         for(var r in result)
@@ -53,7 +47,7 @@ var job = new CronJob('30 * * * * *', function() {
                 }
                 //do something.
                 connection.collection('bid').find({itemno:new ObjectID(row_snaphot._id)}).toArray(function (err, bidresult) {
-                    console.log("[8]"+JSON.stringify(bidresult[0]));
+                  //  console.log("[8]"+JSON.stringify(bidresult[0]));
                     var bids = bidresult[0].bids;
 
                     var deleteflag = false;
@@ -74,7 +68,7 @@ var job = new CronJob('30 * * * * *', function() {
                             //post.email = null;
                             post.user_id = bids[bid].userid;
                           //  post.dateposted = new Date();
-                            console.log(post.user_id);
+                           // console.log(post.user_id);
                            // bidlog.info('bid won by ', post.userid, ' performed at ', new Date().toJSON(), ' for item ', post.itemno, ' amount placed ', post.itemprice, ' quantity selected ', post.quantity);
                             //update to user history'
                             updateBidToUserHistory(post,connection);

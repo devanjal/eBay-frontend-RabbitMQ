@@ -9,7 +9,6 @@ var db;
 // Initialize connection once
 MongoClient.connect(mongoUrl, function(err, database) {
 	if(err) throw err;
-	console.log('**************************************************')
 	db = database;
 
 });

@@ -20,6 +20,12 @@ profile.controller('profile', function($scope, $http,$window) {
                 alert("invalid Input")
                 $window.location.assign("/profile");;
             }
+            else if (data.code==400) {
+                $scope.invalid_login = false;
+                $scope.validlogin = true;
+                alert(data.erro)
+                //$window.location.assign("/profile");;
+            }
             else
             {
                 $scope.invalid_login=true;

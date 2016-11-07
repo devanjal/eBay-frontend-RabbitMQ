@@ -31,6 +31,10 @@ exports.checkSignup = function(req,res){
 				console.log("User account created.");
 				res.send({"status":"Success"});
 			}
+			if(results.code == 402){
+				console.log("User account created.");
+				res.send({"status":"Fail2"});
+			}
 			else{
 				console.log("User account not created");
 				res.send({"status":"Fail"});

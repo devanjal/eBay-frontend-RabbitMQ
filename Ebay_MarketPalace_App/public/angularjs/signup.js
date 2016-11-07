@@ -20,8 +20,14 @@ signup.controller('signup', function($scope, $http,$window) {
 			if (data.status == "Fail") {
 				$scope.invalid_login = false;
 				$scope.unexpected_error = true;
-				alert("shit");
+				//alert("shit");
 				$scope.existingUser='Account Already Exist';
+			}
+			else if (data.status == "Fail2") {
+				$scope.invalid_login = false;
+				$scope.unexpected_error = true;
+				//alert("shit");
+				$scope.existingUser='Fill First Name and Last Name Correctly';
 			}
 			else{
 			//Making a get call to the '/redirectToHomepage' API

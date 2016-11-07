@@ -17,8 +17,8 @@ exports.post_order_history=function(req,res){
             throw err;
         }else{
             if(results.code == 200){
-                console.log("User account created."+results);
-
+                console.log("User account created."+results.user);
+                console
                 res.send(results.user);
             }
             else{

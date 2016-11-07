@@ -29,10 +29,25 @@ product.controller('product', function($scope, $http,$window) {
 			}
 		}).success(function(data) {
 			//checking the response data for statusCode
-			if (data.code == 401) {
+			if (data.statusCode == 401) {
 				$scope.invalid_login = false;
 				$scope.validlogin = true;
 
+			}
+			else if (data.statusCode == 400) {
+				$scope.invalid_login = false;
+				$scope.validlogin = true;
+				alert("invalid Price")
+			}
+			else if (data.statusCode == 402) {
+				$scope.invalid_login = false;
+				$scope.validlogin = true;
+				alert("invalid Qunatity")
+			}
+			else if (data.statusCode == 405) {
+				$scope.invalid_login = false;
+				$scope.validlogin = true;
+				alert(data.erro);
 			}
 			else
 			{

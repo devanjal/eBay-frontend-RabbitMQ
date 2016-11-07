@@ -29,6 +29,7 @@ exports.getValid=function(req,res){
 	}
 	if(c!=3){
 		scvv="invalid cvv";
+		console.log("error in cvv")
 		flag++;
 	}
 	if(year<16 || month>13 || year>26 ||month<1){

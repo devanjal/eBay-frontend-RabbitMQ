@@ -22,3 +22,183 @@
 05:19:10.269 INFO  User ID :    purpose :Login    Date & Time:  11/6/2016, 5:19:10 AM 
 05:19:30.972 INFO  User ID :    purpose :Login    Date & Time:  11/6/2016, 5:19:30 AM 
 05:19:36.532 INFO  User ID :    purpose :Login    Date & Time:  11/6/2016, 5:19:36 AM 
+05:21:48.657 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 5:21:48 AM 
+10:55:59.056 INFO  User ID :    purpose :Login    Date & Time:  11/6/2016, 10:55:59 AM 
+10:56:05.215 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 10:56:05 AM 
+12:13:44.421 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 12:13:44 PM 
+12:15:35.244 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 12:15:35 PM 
+12:17:03.134 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 12:17:03 PM 
+12:20:11.158 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 12:20:11 PM 
+12:22:42.807 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 12:22:42 PM 
+12:50:42.338 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 12:50:42 PM 
+12:50:52.595 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 12:50:52 PM 
+12:53:13.848 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 12:53:13 PM 
+12:53:26.163 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 12:53:26 PM 
+12:54:54.364 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 12:54:54 PM 
+12:55:08.618 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 12:55:08 PM 
+13:11:14.305 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Viewing Products    Date & Time:  11/6/2016, 1:11:14 PM 
+13:11:33.825 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 1:11:33 PM 
+13:12:55.701 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 1:12:55 PM 
+13:13:51.873 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 1:13:51 PM 
+13:14:06.729 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 1:14:06 PM 
+13:15:31.925 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 1:15:31 PM 
+13:15:42.516 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 1:15:42 PM 
+13:16:16.930 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 1:16:16 PM 
+13:16:24.727 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 1:16:24 PM 
+13:17:04.282 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 1:17:04 PM 
+13:17:13.027 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 1:17:13 PM 
+13:18:11.201 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 1:18:11 PM 
+13:18:22.467 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 1:18:22 PM 
+13:42:56.022 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Viewing Products    Date & Time:  11/6/2016, 1:42:55 PM 
+13:43:12.930 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : edit Profile    Date & Time:  11/6/2016, 1:43:12 PM 
+13:43:12.931 INFO  subscription to channel accepted at 2016-11-06T21:43:12.931Z 
+13:43:15.691 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Viewed Profile    Date & Time:  11/6/2016, 1:43:15 PM 
+13:43:57.322 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : edit Profile    Date & Time:  11/6/2016, 1:43:57 PM 
+13:43:57.323 INFO  subscription to channel accepted at 2016-11-06T21:43:57.322Z 
+13:43:58.653 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Viewed Profile    Date & Time:  11/6/2016, 1:43:58 PM 
+13:44:59.673 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 1:44:59 PM 
+13:45:07.791 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : edit Profile    Date & Time:  11/6/2016, 1:45:07 PM 
+13:52:28.362 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 1:52:28 PM 
+13:52:50.834 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : edit Profile    Date & Time:  11/6/2016, 1:52:50 PM 
+13:53:02.010 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Viewed Profile    Date & Time:  11/6/2016, 1:53:02 PM 
+13:54:12.673 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 1:54:12 PM 
+13:54:26.589 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : edit Profile    Date & Time:  11/6/2016, 1:54:26 PM 
+13:54:34.275 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : edit Profile    Date & Time:  11/6/2016, 1:54:34 PM 
+14:22:16.431 INFO  User ID :    purpose :Login    Date & Time:  11/6/2016, 2:22:16 PM 
+14:22:24.387 INFO  User ID :    purpose :Login    Date & Time:  11/6/2016, 2:22:24 PM 
+14:22:45.561 INFO  User ID :    purpose :Login    Date & Time:  11/6/2016, 2:22:45 PM 
+14:37:46.233 INFO  User ID : 581fb0ba858f3d266f9517d1   purpose :Login    Date & Time:  11/6/2016, 2:37:46 PM 
+14:41:48.602 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 2:41:48 PM 
+14:43:31.917 INFO  User ID :    purpose :Login    Date & Time:  11/6/2016, 2:43:31 PM 
+14:44:05.354 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 2:44:05 PM 
+14:44:44.017 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 2:44:44 PM 
+14:46:50.132 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 2:46:50 PM 
+14:47:44.080 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 2:47:44 PM 
+14:48:16.149 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 2:48:16 PM 
+14:48:42.799 INFO  User ID : 581fb34ad41909287f2a01f7   purpose :Login    Date & Time:  11/6/2016, 2:48:42 PM 
+14:48:51.170 INFO  User ID : 581fb34ad41909287f2a01f7   purpose :Login    Date & Time:  11/6/2016, 2:48:51 PM 
+14:49:11.950 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 2:49:11 PM 
+14:49:41.886 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 2:49:41 PM 
+14:50:16.647 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose :Login    Date & Time:  11/6/2016, 2:50:16 PM 
+14:50:21.205 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose :Login    Date & Time:  11/6/2016, 2:50:21 PM 
+14:50:37.832 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 2:50:37 PM 
+14:51:07.309 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 2:51:07 PM 
+14:51:10.753 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : Viewing Products    Date & Time:  11/6/2016, 2:51:10 PM 
+14:51:37.746 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 2:51:37 PM 
+14:52:08.059 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 2:52:08 PM 
+14:55:00.364 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Added Item to Cart    Date & Time:  11/6/2016, 2:55:00 PM 
+14:55:01.161 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : View Cart    Date & Time:  11/6/2016, 2:55:01 PM 
+14:55:14.505 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 2:55:14 PM 
+14:55:46.794 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : View Cart    Date & Time:  11/6/2016, 2:55:46 PM 
+14:55:48.588 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Checkout    Date & Time:  11/6/2016, 2:55:48 PM 
+14:56:38.679 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 2:56:38 PM 
+14:56:43.530 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : View Cart    Date & Time:  11/6/2016, 2:56:43 PM 
+14:56:44.793 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Checkout    Date & Time:  11/6/2016, 2:56:44 PM 
+15:00:34.300 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 3:00:34 PM 
+15:00:36.997 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : View Cart    Date & Time:  11/6/2016, 3:00:36 PM 
+15:00:38.566 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Checkout    Date & Time:  11/6/2016, 3:00:38 PM 
+15:00:50.431 INFO  User ID : 581fb1ac858f3d266f9517d2   Issue : Invalid Card Info    Date & Time:  11/6/2016, 3:00:50 PM 
+15:02:18.130 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 3:02:18 PM 
+15:02:20.815 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : View Cart    Date & Time:  11/6/2016, 3:02:20 PM 
+15:02:22.106 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Checkout    Date & Time:  11/6/2016, 3:02:22 PM 
+15:03:14.927 INFO  User ID : 581fb1ac858f3d266f9517d2   Issue : Invalid Card Info    Date & Time:  11/6/2016, 3:03:14 PM 
+15:03:22.420 INFO  User ID : 581fb1ac858f3d266f9517d2   Issue : Invalid Card Info    Date & Time:  11/6/2016, 3:03:22 PM 
+15:03:29.181 INFO  User ID : 581fb1ac858f3d266f9517d2   Issue : Invalid Card Info    Date & Time:  11/6/2016, 3:03:29 PM 
+15:03:57.301 INFO  User ID : 581fb1ac858f3d266f9517d2   Issue : Invalid Card Info    Date & Time:  11/6/2016, 3:03:57 PM 
+15:04:16.893 INFO  User ID : 581fb1ac858f3d266f9517d2   Issue : Invalid Card Info    Date & Time:  11/6/2016, 3:04:16 PM 
+15:04:34.799 INFO  User ID : 581fb1ac858f3d266f9517d2   Issue : Invalid Card Info    Date & Time:  11/6/2016, 3:04:34 PM 
+15:04:47.101 INFO  User ID : 581fb1ac858f3d266f9517d2  Purpose : Successful Purchase   Date & Time:  11/6/2016, 3:04:47 PM 
+15:09:14.589 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose :Login    Date & Time:  11/6/2016, 3:09:14 PM 
+15:09:54.672 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 3:09:54 PM 
+15:10:09.697 INFO  User ID :    purpose :Login    Date & Time:  11/6/2016, 3:10:09 PM 
+15:10:20.998 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 3:10:20 PM 
+15:10:23.990 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 3:10:23 PM 
+15:11:52.212 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 3:11:52 PM 
+15:11:55.277 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 3:11:55 PM 
+15:12:05.292 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 3:12:05 PM 
+15:12:39.679 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 3:12:39 PM 
+15:13:51.707 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose :Login    Date & Time:  11/6/2016, 3:13:51 PM 
+15:14:48.482 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 3:14:48 PM 
+15:15:08.173 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 3:15:08 PM 
+15:15:10.337 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 3:15:10 PM 
+15:16:24.040 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose :Login    Date & Time:  11/6/2016, 3:16:24 PM 
+15:16:57.661 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 3:16:57 PM 
+15:17:11.294 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 3:17:11 PM 
+15:17:13.685 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 3:17:13 PM 
+15:18:15.096 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 3:18:15 PM 
+15:18:37.020 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 3:18:37 PM 
+15:20:01.496 INFO  User ID : 581fb34ad41909287f2a01f7   purpose :Login    Date & Time:  11/6/2016, 3:20:01 PM 
+15:20:04.035 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Viewing Products    Date & Time:  11/6/2016, 3:20:04 PM 
+15:20:29.258 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 3:20:29 PM 
+15:20:48.310 INFO  User ID :    purpose : Viewing Products    Date & Time:  11/6/2016, 3:20:48 PM 
+15:20:49.083 INFO  User ID :    purpose : Viewing Products    Date & Time:  11/6/2016, 3:20:49 PM 
+15:21:10.764 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 3:21:10 PM 
+15:22:48.153 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 3:22:48 PM 
+15:23:45.109 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 3:23:45 PM 
+15:24:02.339 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 3:24:02 PM 
+15:24:11.969 INFO  User ID : 581fb34ad41909287f2a01f7   purpose :Login    Date & Time:  11/6/2016, 3:24:11 PM 
+15:24:36.684 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 3:24:36 PM 
+15:25:20.656 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 3:25:20 PM 
+15:25:58.676 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 3:25:58 PM 
+15:27:02.602 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 3:27:02 PM 
+15:27:04.488 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 3:27:04 PM 
+15:27:27.886 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose :Login    Date & Time:  11/6/2016, 3:27:27 PM 
+15:28:28.007 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 3:28:28 PM 
+15:28:48.936 INFO  User ID : 581fb34ad41909287f2a01f7   purpose :Login    Date & Time:  11/6/2016, 3:28:48 PM 
+15:28:52.543 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Viewing Products    Date & Time:  11/6/2016, 3:28:52 PM 
+15:32:31.457 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 3:32:31 PM 
+15:36:05.733 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Viewing Products    Date & Time:  11/6/2016, 3:36:05 PM 
+15:36:15.121 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Viewing Products    Date & Time:  11/6/2016, 3:36:15 PM 
+15:40:56.306 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose :Login    Date & Time:  11/6/2016, 3:40:56 PM 
+15:41:28.869 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 3:41:28 PM 
+15:41:48.543 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 3:41:48 PM 
+15:41:53.867 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 3:41:53 PM 
+15:43:08.768 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 3:43:08 PM 
+15:45:04.539 INFO  User ID : 581fb34ad41909287f2a01f7   purpose :Login    Date & Time:  11/6/2016, 3:45:04 PM 
+15:45:07.213 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Viewing Products    Date & Time:  11/6/2016, 3:45:07 PM 
+15:45:52.584 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Viewing Products    Date & Time:  11/6/2016, 3:45:52 PM 
+15:46:33.366 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Viewing Products    Date & Time:  11/6/2016, 3:46:33 PM 
+15:48:50.016 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 3:48:50 PM 
+15:49:16.457 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : edit Profile    Date & Time:  11/6/2016, 3:49:16 PM 
+15:49:40.909 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : edit Profile    Date & Time:  11/6/2016, 3:49:40 PM 
+15:50:07.117 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : edit Profile    Date & Time:  11/6/2016, 3:50:07 PM 
+15:50:12.371 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewed Profile    Date & Time:  11/6/2016, 3:50:12 PM 
+15:50:50.717 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 3:50:50 PM 
+15:51:14.824 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : edit Profile    Date & Time:  11/6/2016, 3:51:14 PM 
+15:51:16.021 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewed Profile    Date & Time:  11/6/2016, 3:51:16 PM 
+15:58:56.033 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 3:58:56 PM 
+15:59:21.263 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 3:59:21 PM 
+15:59:30.997 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose :Login    Date & Time:  11/6/2016, 3:59:30 PM 
+15:59:33.398 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : Viewing Products    Date & Time:  11/6/2016, 3:59:33 PM 
+15:59:41.450 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : Added Item to Cart    Date & Time:  11/6/2016, 3:59:41 PM 
+15:59:41.723 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : View Cart    Date & Time:  11/6/2016, 3:59:41 PM 
+15:59:44.738 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : removed Item  :581fc3eda871193f6d4af781  Date & Time:  11/6/2016, 3:59:44 PM 
+15:59:45.035 INFO  User ID : 581fb3a8d41909287f2a01f8   purpose : Viewing Products    Date & Time:  11/6/2016, 3:59:45 PM 
+16:01:36.846 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 4:01:36 PM 
+16:01:56.466 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 4:01:56 PM 
+16:04:07.207 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Viewing Products    Date & Time:  11/6/2016, 4:04:07 PM 
+16:04:13.342 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 4:04:13 PM 
+16:07:32.591 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 4:07:32 PM 
+16:08:24.803 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 4:08:24 PM 
+16:15:53.529 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 4:15:53 PM 
+16:16:06.292 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 4:16:06 PM 
+16:16:31.140 INFO  User ID :    purpose :Login    Date & Time:  11/6/2016, 4:16:31 PM 
+16:16:34.130 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose :Login    Date & Time:  11/6/2016, 4:16:34 PM 
+16:17:10.609 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 4:17:10 PM 
+16:17:18.635 INFO  User ID : 581fb1ac858f3d266f9517d2   purpose : Viewing Products    Date & Time:  11/6/2016, 4:17:18 PM 
+16:17:51.119 INFO  User ID : 581fb34ad41909287f2a01f7   purpose :Login    Date & Time:  11/6/2016, 4:17:51 PM 
+16:17:53.883 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Viewing Products    Date & Time:  11/6/2016, 4:17:53 PM 
+16:19:00.428 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 4:19:00 PM 
+16:19:04.816 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Viewing Products    Date & Time:  11/6/2016, 4:19:04 PM 
+16:21:04.988 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 4:21:04 PM 
+16:21:44.857 INFO  User ID : 581fb34ad41909287f2a01f7   purpose :Login    Date & Time:  11/6/2016, 4:21:44 PM 
+16:22:49.078 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 4:22:49 PM 
+16:23:02.851 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 4:23:02 PM 
+16:23:15.451 INFO  User ID : 581fb34ad41909287f2a01f7   purpose : Posting Product for Sale    Date & Time:  11/6/2016, 4:23:15 PM 
+16:39:28.959 INFO  User ID :    purpose : Viewing Products    Date & Time:  11/6/2016, 4:39:28 PM 
+16:39:34.810 INFO  User ID :    purpose : Viewing Products    Date & Time:  11/6/2016, 4:39:34 PM 
+16:40:16.700 INFO  User ID :    purpose : Viewing Products    Date & Time:  11/6/2016, 4:40:16 PM 
+16:42:19.668 INFO  User ID :    purpose : Viewing Products    Date & Time:  11/6/2016, 4:42:19 PM 
+16:42:28.492 INFO  User ID :    purpose : Viewing Products    Date & Time:  11/6/2016, 4:42:28 PM 
+17:23:24.271 INFO  User ID : 581ea453c5d36daa7fdf0aac   purpose :Login    Date & Time:  11/6/2016, 5:23:24 PM 
+18:09:55.577 INFO  User ID :    purpose : Viewing Products    Date & Time:  11/6/2016, 6:09:55 PM 

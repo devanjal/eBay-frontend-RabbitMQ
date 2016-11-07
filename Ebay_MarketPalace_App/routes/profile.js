@@ -26,14 +26,17 @@ exports.setProfile=function(req,res){
 
     			res.send(results);
     		}
+    		else if(results.code==400){
+    			res.send(results)
+			}
     		else{
     			console.log("User account not created");
     			res.send({"status":"Fail"});
     		}
     	}
     });
-   // log.info("GET ","/signin ", " user ", req.session.user_id, " logged in at ", new Date().toLocaleString());;
-    log.info('subscription to ', 'channel', ' accepted at ', new Date().toJSON());
+
+    //log.info('subscription to ', 'channel', ' accepted at ', new Date().toJSON());
     var setProfile= 'UPDATE user SET birthday="'+req.body.dob+'",ebay_handle="'+req.body.ebay_handle+'", contact="'+req.body.phone+'" WHERE email="'+req.session.user+'" AND first_name="'+req.session.first_name+'"';
     // console.log(setProfile)
     // mysql.fetchData(setProfile,function(err,result){
