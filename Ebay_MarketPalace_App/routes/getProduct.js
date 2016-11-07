@@ -17,34 +17,34 @@ exports.getUser = function(req,res){
 
     console.log("GET profile Request" + collection);
 
-    mq_client.make_request('profile_queue',msg_payload, function(err,results){
-
-      //  console.log(results);
-        if(err){
-            throw err;
-        }
-        else
-        {
-            if(results.code == 200) {
-                console.log("Profile fetched   " + results.items);
-
-                res.send(results.items);
-            }
-            else {
-
-                console.log("Profile has some issue");
-                res.send({"status":"Fail"});
-            }
-        }
-    });
-    // mongo.connect(mongoURL, function() {
-    //     console.log('Connected to mongo at: ' + mongoURL);
-    //     var coll = mongo.collection('advertisement');
-    //     var des = coll.find().toArray(function(err, items) {
-    //         console.log(items);
-    //         res.send(items);
-    //     })
-    // })
+    //mq_client.make_request('profile_queue',msg_payload, function(err,results){
+    //
+    //   //  console.log(results);
+    //     if(err){
+    //         throw err;
+    //     }
+    //     else
+    //     {
+    //         if(results.code == 200) {
+    //             console.log("Profile fetched   " + results.items);
+    //
+    //             res.send(results.items);
+    //         }
+    //         else {
+    //
+    //             console.log("Profile has some issue");
+    //             res.send({"status":"Fail"});
+    //         }
+    //     }
+    // });
+    mongo.connect(mongoURL, function() {
+        console.log('Connected to mongo at: ' + mongoURL);
+        var coll = mongo.collection('advertisement');
+        var des = coll.find().toArray(function(err, items) {
+            console.log(items);
+            res.send(items);
+        })
+    })
 };
 
 exports.getUser1=function(req,res){

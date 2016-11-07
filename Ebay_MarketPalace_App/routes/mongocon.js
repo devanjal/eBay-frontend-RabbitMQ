@@ -15,7 +15,7 @@ MongoClient.connect(mongoUrl, function(err, database) {
 
 //module.exports = db;
 
-exports.getdbconnection = function()
+exports.dbcon = function()
 {
 	return db;
 }
